@@ -87,8 +87,12 @@ t_arg		*init_pflag(t_arg *tvar, const char *format)
 		tvar->pref[j] = '\0';
 		return (tvar);
 	}
-		while (search_pflag(format, tmp) != 0)
-		tvar->pref[j++] = format[tmp++];
+		while (format[tmp] && ft_strchr("sSudioxXp%ljzh+-#0123456789", format[tmp]))
+		{
+		if (search_pflag(format, tmp) != 0)
+			tvar->pref[j++] = format[tmp];
+		tmp++;
+		}
 	tvar->pref[j] = '\0';
 	return (tvar);
 }

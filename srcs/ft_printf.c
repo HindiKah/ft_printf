@@ -25,6 +25,7 @@ int			ft_printf(const char *format, ...)
 	t_arg		*tvar;
 	int			ret;
 
+	ft_memset(tvar, 0, sizeof(t_arg) * ft_countparams(format) + 1);
 	tvar = (t_arg*)malloc(sizeof(t_arg) * ft_countparams(format));
 	my_func = NULL;
 	my_funf = NULL;
