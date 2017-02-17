@@ -73,12 +73,18 @@ t_arg		*ft_do_all_fun(t_funf *my_funf, t_func *my_func, va_list all_arg, t_arg *
 {
 	int i;
 
+	ft_putstr("ENTER DO ALL FUN\n");
 	i = 0;
-	while (tvar[i].truearg == 1)
+	while (tvar[i].type != 'e')
 	{
+		ft_putstr("ENTER THE WHILE\n");
+		ft_putchar(tvar[i].type);
 		ft_init_value(&tvar[i], all_arg, my_funf);
-		tvar->value = (tvar->ret[0] == '0') ? 0 : 1;
+		ft_putstr("AFTER INIT VALUE\n");
+		tvar->value = (tvar[i].ret[0] == '0') ? 0 : 1;
+		ft_putstr("ATTRIB TVAR VALUE\n");
 		func_check(my_func, &tvar[i]);
+		ft_putstr("AFTER FUNC CHECK\n");
 		i++;
 	}
 	return (tvar);

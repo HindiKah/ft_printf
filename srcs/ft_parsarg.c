@@ -40,12 +40,12 @@ t_arg		*parse_args(t_arg *tvar, const char *format)
 			while (format[j] && !ft_strchr("sSpdDioOuUxXcC%", format[j]))
 				j++;
 			tvar[i_tvar].type = format[j];
-			tvar[i_tvar].str = (ft_strchr("sScC", tvar->type)) ? 1 : 0;
-			tvar[i_tvar].argend = j;
+			tvar[i_tvar].str = (ft_strchr("sScC%", tvar->type)) ? 1 : 0;
+			tvar[i_tvar].argend = j + 1;
 			tvar[i_tvar].index = i;
 			parse_this_arg(&tvar[i_tvar], format + i + 1);
 			tvar[i_tvar].truearg = 1;
-			i = tvar[i_tvar].argend;
+			i = tvar[i].argend;
 			i_tvar++;
 		}
 		i++;
