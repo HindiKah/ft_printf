@@ -74,20 +74,9 @@ t_arg		*init_pflag(t_arg *tvar, const char *format)
 	int tmp;
 
 	tmp = 0;
-	tvar->pref = (char*)malloc(sizeof(char) * (5));
+	tvar->pref = (char*)malloc(sizeof(char) * (4));
 	j = 0;
-	if (tvar->str == 0)
-	{
-		tvar->pref[j++] = 'n';
-		tvar->pref[j++] = '0';
-	}
-	else
-	{
-		tvar->pref[j++] = 'N';
-		tvar->pref[j] = '\0';
-		return (tvar);
-	}
-		while (format[tmp] && ft_strchr("sSudioxXp%ljzh+-#0123456789", format[tmp]))
+	while (format[tmp] && ft_strchr("sSudioxXp%ljzh+-#0123456789", format[tmp]))
 		{
 		if (search_pflag(format, tmp) != 0)
 			tvar->pref[j++] = format[tmp];

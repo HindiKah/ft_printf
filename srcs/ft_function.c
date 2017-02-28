@@ -14,19 +14,23 @@
 
 t_func		*ft_init_func(t_func *my_func)
 {
-	my_func = (t_func*)malloc(sizeof(t_func) * 6);
-	my_func[0].pflag = '0';
-	my_func[0].f = &pflag_0;
-	my_func[1].pflag = '#';
-	my_func[1].f = &pflag_sharp;
-	my_func[2].pflag = '+';
-	my_func[2].f = &pflag_more;
-	my_func[3].pflag = 'n';
-	my_func[3].f = &pflag_none;
-	my_func[4].pflag = 'N';
-	my_func[4].f = &pflag_pc;
-	my_func[5].pflag = '-';
-	my_func[5].f = &pflag_less;
+	my_func = (t_func*)malloc(sizeof(t_func) * 7);
+	my_func[0].type = FINT;
+	my_func[0].f = &putd;
+	my_func[1].type = FUINT;
+	my_func[1].f = &putx;
+	/*
+	my_func[2].type = FCHAR;
+	my_func[2].f = &putch;
+	my_func[3].type = FSTR;
+	my_func[3].f = &putst;
+	my_func[4].type = FPERCENT;
+	my_func[4].f = &putpercent;
+	my_func[5].type = FPOINTER;
+	my_func[5].f = &putp;
+	my_func[6].type = FCHARTAB;
+	my_func[6].f = &putwstr;
+	*/
 	return (my_func);
 }
 
@@ -50,42 +54,27 @@ t_funf		*ft_init_funf(t_funf *my_funf)
 	return (my_funf);
 }
 
-t_arg		*func_check(t_func *my_func, t_arg *tvar)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (tvar->pref[j] && i < 6)
-	{
-		if (ft_strchr(tvar->pref, my_func[i].pflag))
-		{
-			my_func[i].f(tvar);
-			j++;
-		}
-		i++;
-	}
-	return (tvar);
-}
-
 t_arg		*ft_do_all_fun(t_funf *my_funf, t_func *my_func, va_list all_arg, t_arg *tvar)
 {
 	int i;
 
-	ft_putstr("ENTER DO ALL FUN\n");
 	i = 0;
 	while (tvar[i].type != 'e')
 	{
-		ft_putstr("ENTER THE WHILE\n");
-		ft_putchar(tvar[i].type);
 		ft_init_value(&tvar[i], all_arg, my_funf);
-		ft_putstr("AFTER INIT VALUE\n");
 		tvar->value = (tvar[i].ret[0] == '0') ? 0 : 1;
-		ft_putstr("ATTRIB TVAR VALUE\n");
-		func_check(my_func, &tvar[i]);
-		ft_putstr("AFTER FUNC CHECK\n");
 		i++;
 	}
 	return (tvar);
 }
+
+void		print_arg(t_arg *tvar, t_func *my_func)
+{
+	int		i;
+
+	i = 0;
+	while (!ft_strchr(my_func[i].type, tvar->type))
+		i++;
+	my_func[i].f(tvar);
+}
+

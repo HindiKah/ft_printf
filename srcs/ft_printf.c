@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void		final_print(const char *format, t_arg *tvar, va_list all_arg);
+void		final_print(const char *format, t_arg *tvar, va_list all_arg, t_func *my_func);
 size_t		ft_arglen(t_arg *tvar);
 int			testprint(t_arg tvar);
 int			printf_result(const char *format, t_arg *tvar);
@@ -30,43 +30,30 @@ int			ft_printf(const char *format, ...)
 		return(0);
 	my_func = NULL;
 	my_funf = NULL;
-			ft_putstr("hello1\n");
 	va_start(all_arg, format);
-			ft_putstr("hello2\n");
 	my_func = ft_init_func(my_func);
-			ft_putstr("hello3\n");
 	my_funf = ft_init_funf(my_funf);
-			ft_putstr("hello4\n");
 	tvar = parse_args(tvar, format);
-			ft_putstr("hello5\n");
 	ft_do_all_fun(my_funf, my_func, all_arg, tvar);
-			ft_putstr("hello6\n");
 
+	
+	   int i = 0;
+	   while (i < ft_countparams(format))
+	   {
+	   printf("\nFT_PRINTF\nstruct s_arg:\n{\n\tindex = %d\n\tflag = %c\n\ttype= %c\n\tpref= %s\n\tprecision= %d\n\tprecision2= %d\n\ti_end= %d\n\tbase = %d\n\tSign = %d\n\tvalue = %d\n\tdot = %d\n\targend = %d\n\twlen = %d\n\tstr = %d\n\tRET = |%s|\n}\n\n", tvar[i].index, tvar[i].flag, tvar[i].type, tvar[i].pref, tvar[i].p, tvar[i].p0, tvar[i].argend, tvar[i].base,tvar[i].sign,tvar[i].value, tvar[i].dot, tvar[i].argend, tvar[i].wlen, tvar[i].str, tvar[i].ret);
+	   i++;
+	   }
 
-	int i = 0;
-	while (i < 1)
-	{
-		printf("\nFT_PRINTF\nstruct s_arg:\n{\n\tindex = %d\n\tflag = %c\n\ttype= %c\n\tpref= %s\n\tprecision= %d\n\tprecision2= %d\n\ti_end= %d\n\tbase = %d\n\tSign = %d\n\tvalue = %d\n\tdot = %d\n\targend = %d\n\twlen = %d\n\tstr = %d\n\tRET = |%s|\n}\n\n", tvar[i].index, tvar[i].flag, tvar[i].type, tvar[i].pref, tvar[i].p, tvar[i].p0, tvar[i].argend, tvar[i].base,tvar[i].sign,tvar[i].value, tvar[i].dot, tvar[i].argend, tvar[i].wlen, tvar[i].str, tvar[i].ret);
-		i++;
-	}
-
-
-	ret = (tvar[0].type != 'e') ?  printf_result(format, tvar) : ft_strlen(format);;
-			ft_putstr("hello7\n");
-	final_print(format, tvar, all_arg);
-			ft_putstr("hello8\n");
+	ret = (tvar[0].type != 'e') ?  printf_result(format, tvar) : ft_strlen(format);
+	final_print(format, tvar, all_arg, my_func);
 	va_end(all_arg);
-			ft_putstr("hello9\n");
 	free(my_func);
-			ft_putstr("hello10\n");
 	free(my_funf);
-			ft_putstr("hello11\n");
 	free(tvar);
-			ft_putstr("hello12\n");
 	return (ret);
 }
 
-void		final_print(const char *format, t_arg *tvar, va_list all_arg)
+void		final_print(const char *format, t_arg *tvar, va_list all_arg, t_func *my_func)
 {
 	int		i;
 	int		k;
@@ -77,25 +64,22 @@ void		final_print(const char *format, t_arg *tvar, va_list all_arg)
 	j = 0;
 	k = 0;
 	i = 0;
-	//ft_putstr("ENTER FINAL PRINT\n");
 	while (format[i])
 	{
-		if (format[i] == '%' && tvar[k].type != 'e')
+		if (i == tvar[k].index && tvar[k].type != 'e')
 		{
-			i++;
 			write(1, format + tmp, j);
-			if (ft_strchr("cCS", tvar[k].type))
-					write(1, tvar[k].ret, tvar[k].wlen);
-			else if (testprint(tvar[k]) == 1)
-				write(1, tvar[k].ret, ft_strlen(tvar[k].ret));
+			print_arg(tvar, my_func);
 			i = tvar[k].argend;
-			tmp = (format[i + 1] ? i + 1 : i);
+			tmp = i;
 			j = 0;
 			k++;
 		}
 		else
+		{
 			j++;
-		i++;
+			i++;
+		}
 	}
 	if (format[tmp])
 		write(1, format + tmp, j);
@@ -129,24 +113,26 @@ int			printf_result(const char *format, t_arg *tvar)
 	int		k;
 	int		ret;
 
-	//ft_putstr("ENTER PRINT RESULT\n");
 	k = 0;
 	i = 0;
 	ret = 0;
-	while (format[i])
+	while (format[i] != '\0')
 	{
 		if (i == tvar[k].index)
 		{
 			if (ft_strchr("cCS", tvar[k].type))
 				ret += tvar[k].wlen;
-				else
-			ret += ft_strlen(tvar[k].ret);
+			else
+				ret += (tvar[k].ret) ? ft_strlen(tvar[k].ret) 
+					: 0;
 			i = tvar[k].argend;
 			k++;
 		}
 		else
+		{
 			ret++;
-		i++;
+			i++;
+		}
 	}
 	return (ret);
 }

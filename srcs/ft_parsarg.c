@@ -40,12 +40,11 @@ t_arg		*parse_args(t_arg *tvar, const char *format)
 			while (format[j] && !ft_strchr("sSpdDioOuUxXcC%", format[j]))
 				j++;
 			tvar[i_tvar].type = format[j];
-			tvar[i_tvar].str = (ft_strchr("sScC%", tvar->type)) ? 1 : 0;
 			tvar[i_tvar].argend = j + 1;
 			tvar[i_tvar].index = i;
 			parse_this_arg(&tvar[i_tvar], format + i + 1);
 			tvar[i_tvar].truearg = 1;
-			i = tvar[i].argend;
+			i = (tvar[i_tvar].type == '%') ? j + 1 : j;
 			i_tvar++;
 		}
 		i++;
@@ -77,41 +76,34 @@ t_arg		*parse_this_arg(t_arg *tvar, const char *format)
 	else if (ft_strchr("o", tvar->type))
 		tvar->base = 8;
 	else
-	tvar->base = 0;
+		tvar->base = 0;
 	return (tvar);
 }
 
 t_arg		*init_precision(t_arg *tvar, const char *format)
 {
-	int dot;
-	int p0;
 	int space;
 
+	tvar->p0 = -1;
+	tvar->p = -1;
 	tvar->p = 0;
-	tvar->p0 = 0;
 	space = (*format == ' ') ? 1 : 0;
-	p0 = 0;
-	dot = 0;
 	if ((format = whatisnext_c(format, ' '))[0] == '0')
-		p0 = 1;
+		tvar->space = 1;
 	tvar->p = ft_atoi(format);
 	while (*format && *format != '.' && !ft_strchr("sSpdDioOuUxXcChljz%.", *format))
 		format++;
 	if (*format == '.')
 	{
-		dot = 1;
 		tvar->dot = 1;
 		format++;
 	}
 	tvar->p0 = ft_atoi(format);
-	if (tvar->str != 1)
-		treat_precision(tvar, dot, p0, space);
 	return(tvar);
 }
 
 t_arg		*treat_precision(t_arg *tvar, int dot, int p0,  int space)
 {
-	tvar->p = (tvar->p0 >= tvar->p && space == 1) ? tvar->p0 + 1 : tvar->p;
 	tvar->p0 = (tvar->p0 == 0 && dot == 0 && p0 == 1) ? tvar->p : tvar->p0;
 	tvar->p = (tvar->p < tvar->p0 && space == 0) ? tvar->p0 : tvar->p;
 	return(tvar);

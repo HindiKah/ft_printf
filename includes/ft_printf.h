@@ -37,6 +37,7 @@ typedef struct			s_arg
 	char				*pref;
 	int					p;
 	int					p0;
+	int					space;
 	int					p_end;
 	int					wlen;
 	int					str;
@@ -46,8 +47,8 @@ typedef struct			s_arg
 
 typedef struct			s_func
 {
-	char				pflag;
-	t_arg				*(*f)(t_arg *my_arg);
+	char				*type;
+	void				(*f)(t_arg *my_arg);
 }						t_func;
 
 typedef struct			s_funf
@@ -115,4 +116,10 @@ t_arg			*treat_precision(t_arg *tvar, int i, int j, int k);
 t_arg			*parse_args(t_arg *tvar, const char *format);
 t_arg			*init_flag(t_arg *tvar, const char *format);
 char			*insert_char(char *str, char c);
+void			print_char(char c, int i);
+void			putd(t_arg *tvar);
+void			putx(t_arg *tvar);
+char			*do_upper(char *str);
+void			print_base_prefix(int base, int maj);
+void			print_arg(t_arg *tvar, t_func *my_func);
 #endif
