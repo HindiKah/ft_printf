@@ -99,13 +99,8 @@ t_arg		*init_precision(t_arg *tvar, const char *format)
 		format++;
 	}
 	tvar->p0 = ft_atoi(format);
-	return(tvar);
-}
-
-t_arg		*treat_precision(t_arg *tvar, int dot, int p0,  int space)
-{
-	tvar->p0 = (tvar->p0 == 0 && dot == 0 && p0 == 1) ? tvar->p : tvar->p0;
-	tvar->p = (tvar->p < tvar->p0 && space == 0) ? tvar->p0 : tvar->p;
+	if (tvar->p0 == 0 && tvar->p != 0 && tvar->space == 1)
+		tvar->p0 = tvar->p;
 	return(tvar);
 }
 

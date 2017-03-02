@@ -20,20 +20,9 @@ int			bin_toadd(size_t size);
 char		*add_c_wc(wchar_t c)
 {
 	char	*ret;
-	size_t	iter;
 	size_t	size;
 
-	if (c <= 0x7F)
-		size = 1;
-	else if (c <= 0x7FF)
-		size = 2;
-	else if (c <= 0xFFFF)
-		size = 3;
-	else if (c <= 0x10FFFF)
-		size = 4;
-	else
-		return(NULL);
-	iter = 0;
+	size = wlen(c);
 	ret = (char*)malloc(sizeof(int) * (size + 2));
 	ret = wchar_to_char(c, size, ret);
 	return (ret);
@@ -57,13 +46,9 @@ char		*wchar_to_char(wchar_t c, size_t size, char *ret)
 	while(i >= 0)
 	{
 		if (i == 0)
-		{
-			ret[i] = (c & bin_mask(size)) | bin_toadd(size);
-		}
+			ret[i] = (c | b_max);
 		else
-		{
 			ret[i] = ((b_norm & c) | 0b10000000);
-		}
 		c = c >> 6;
 		i--;
 	}
@@ -74,20 +59,17 @@ char		*wchar_to_char(wchar_t c, size_t size, char *ret)
 
 int			bit_max(int size)
 {
-	int		b_max;
-	int i;
-	int pw;
+	int	pw;
+	int	i;
 
-	b_max = 0;
-	pw = 128;
-	i = 0;
-	while (i < size)
-	{
-		b_max += pw;
-		pw /= 2;
-		i++;
-	}
-	return (b_max);
+	pw = 0;
+	i = 1;
+	while (pw++ < size - 1)
+		i = (i << 1) + 1;
+	pw = 0;
+	while ((i & 0b10000000) != 0b10000000)
+		i = i << 1;
+	return (i);
 }
 
 int			bin_mask(size_t size)
@@ -118,3 +100,21 @@ int			bin_toadd(size_t size)
 	}
 	return (ret);
 }
+
+int			wlen(int c)
+{
+	int		size;
+
+	if (c <= 0x7F)
+		size = 1;
+	else if (c <= 0x7FF)
+		size = 2;
+	else if (c <= 0xFFFF)
+		size = 3;
+	else if (c <= 0x10FFFF)
+		size = 4;
+	else
+		size = 0;
+	return (size);
+}
+

@@ -19,7 +19,6 @@ t_func		*ft_init_func(t_func *my_func)
 	my_func[0].f = &putd;
 	my_func[1].type = FUINT;
 	my_func[1].f = &putx;
-	/*
 	my_func[2].type = FCHAR;
 	my_func[2].f = &putch;
 	my_func[3].type = FSTR;
@@ -27,10 +26,10 @@ t_func		*ft_init_func(t_func *my_func)
 	my_func[4].type = FPERCENT;
 	my_func[4].f = &putpercent;
 	my_func[5].type = FPOINTER;
-	my_func[5].f = &putp;
+	my_func[5].f = &putx;
 	my_func[6].type = FCHARTAB;
 	my_func[6].f = &putwstr;
-	*/
+
 	return (my_func);
 }
 

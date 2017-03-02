@@ -116,7 +116,7 @@ t_arg		*wchar_add(t_arg *tvar, va_list all_arg)
 	wchar_t n;
 
 	n = (wchar_t)va_arg(all_arg, wint_t);
-	tvar->wlen = 1;
+	tvar->wlen = wlen(n);
 	tvar->ret = add_c_wc(n);
 	return (tvar);
 }
@@ -129,7 +129,7 @@ t_arg		*wstr_add(t_arg *tvar, va_list all_arg)
 	n = va_arg(all_arg, wchar_t*);
 	while (*n)
 	{
-		tvar->wlen++; 
+		tvar->wlen++;
 		if (!tvar->ret)
 			tvar->ret = ft_strdup(add_c_wc(*n));
 		else

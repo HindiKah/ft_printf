@@ -119,7 +119,12 @@ char			*insert_char(char *str, char c);
 void			print_char(char c, int i);
 void			putd(t_arg *tvar);
 void			putx(t_arg *tvar);
+void			putch(t_arg *tvar);
+void			putst(t_arg *tvar);
+void			putpercent(t_arg *tvar);
+void			putwstr(t_arg *tvar);
 char			*do_upper(char *str);
 void			print_base_prefix(int base, int maj);
 void			print_arg(t_arg *tvar, t_func *my_func);
+int				wlen(int n);
 #endif
