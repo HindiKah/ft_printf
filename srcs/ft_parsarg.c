@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 15:00:01 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 15:17:53 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 16:48:42 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,15 @@ t_arg		*parse_this_arg(t_arg *tvar, const char *format)
 	while (*format && ft_strchr(" 0123456789.", *format))
 			format++;
 	init_flag(tvar, format);
-	if (ft_strchr("diu", tvar->type))
+	if (ft_strchr("diuU", tvar->type))
+	{
+		if (tvar->type == 'U')
+		{
+			tvar->type = 'u';
+			tvar->flag = 'l';
+		}
 		tvar->base = 10;
+	}
 	else if (ft_strchr("pxX", tvar->type))
 		tvar->base = 16;
 	else if (ft_strchr("o", tvar->type))

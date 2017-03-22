@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 20:45:12 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 13:53:27 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 16:51:18 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFTPRINTF_H
 # define FINT  "di\0"
 # define FUINT  "uUoxX\0"
-# define FUINTO  "o\0"
+# define FUINTO  "ou\0"
 # define FSTR  "s\0"
 # define FCHAR  "cC\0"
 # define FPERCENT  "%\0"

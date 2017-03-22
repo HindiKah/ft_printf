@@ -40,7 +40,7 @@ void		putx(t_arg *tvar)
 		tvar->res += print_char(' ', tvar->p - sharp - (tvar->p0 > tvar->arg_len ? tvar->p0 : tvar->arg_len));
 	if (sharp != 0 && tvar->value != 0)
 		tvar->res += print_base_prefix(tvar->base, maj);
-	if ((left == 0 && tvar->dot == 0) || tvar->base == 8)
+	if (left == 0 && tvar->dot == 0)
 		tvar->res += print_char('0', tvar->p0 - (sharp + tvar->arg_len));
 	if (tvar->value != 0 || tvar->dot == 0)
 		tvar->res += rprint(1, (maj == 1) ? do_upper(tvar->ret) : tvar->ret, tvar->arg_len);
@@ -69,7 +69,6 @@ void		puto(t_arg *tvar)
 		tvar->res += print_char(' ', tvar->p - sharp - (tvar->p0 > tvar->arg_len ? tvar->p0 : tvar->arg_len));
 	if (sharp != 0 && tvar->value != 0)
 		tvar->res += print_base_prefix(tvar->base, 0);
-	if ((left == 0 && tvar->dot == 0) || tvar->base == 8)
 		tvar->res += print_char('0', tvar->p0 - (sharp + tvar->arg_len));
 	if (!(tvar->value == 0 && tvar->dot == 1) || sharp == 1)
 		tvar->res += rprint(1, tvar->ret, tvar->arg_len);

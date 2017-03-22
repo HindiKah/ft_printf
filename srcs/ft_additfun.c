@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 19:11:28 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/02/11 13:41:31 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 16:59:57 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_arg		*init_pflag(t_arg *tvar, const char *format)
 	tmp = 0;
 	tvar->pref = (char*)malloc(sizeof(char) * (4));
 	j = 0;
-	while (format[tmp] && !ft_strchr("sSudioxXp%ljzh123456789", format[tmp]))
+	while (format[tmp] && !ft_strchr("sSuUdioxXp%123456789", format[tmp]))
 		{
 		if (search_pflag(format, tmp) != 0)
 			tvar->pref[j++] = format[tmp];

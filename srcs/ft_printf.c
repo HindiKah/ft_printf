@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 21:12:48 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 15:43:58 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 17:04:08 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int			final_print(const char *format, t_arg *tvar, va_list all_arg, t_func *my_f
 	{
 		if (i == tvar->index && tvar->type != 'e')
 		{
-			ret += rprint(1, format + tmp, j);
+			if ((format + tmp)[0] != '%')
+				ret += rprint(1, format + tmp, j);
 			print_arg(tvar, my_func);
 			ret += tvar->res;
 			i = tvar->argend;
