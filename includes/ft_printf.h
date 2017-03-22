@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 20:45:12 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 16:51:18 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 17:16:37 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define FUINTO  "ou\0"
 # define FSTR  "s\0"
 # define FCHAR  "cC\0"
-# define FPERCENT  "%\0"
+# define FPERCENT  "%Z\0"
 # define FPOINTER  "p\0"
 # define FCHARTAB  "S\0"
 

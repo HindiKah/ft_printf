@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 14:43:58 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 16:35:36 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 17:17:49 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,13 @@ t_arg		*str_add(t_arg *tvar, va_list all_arg)
 
 t_arg		*percent_add(t_arg *tvar, va_list all_arg)
 {
-	tvar->ret = add_percent();
+	if (tvar->type != 'Z')
+		tvar->ret = add_percent();
+	else
+	{
+		tvar->ret = (char*)malloc(sizeof(char) * 2);
+		tvar->ret = "Z\0";
+	}
 	return(tvar);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 15:00:01 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 16:48:42 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 17:13:35 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_arg		*parse_args(t_arg *tvar, const char *format)
 		{
 			j = i + 1;
 			tvar[i_tvar].index = i;
-			while (format[j] && !ft_strchr("sSpdDioOuUxXcC%", format[j]))
+			while (format[j] && !ft_strchr("sSpdDioOuUxXcC%Z", format[j]))
 				j++;
 			tvar[i_tvar].type = format[j];
 			tvar[i_tvar].argend = j + 1;
@@ -96,7 +96,7 @@ t_arg		*init_precision(t_arg *tvar, const char *format)
 	tvar->p = 0;
 	tvar->space = (*format == ' ') ? 1 : 0;
 	tvar->p = ft_atoi(format);
-	while (*format && *format != '.' && !ft_strchr("sSpdDioOuUxXcChljz%.", *format))
+	while (*format && *format != '.' && !ft_strchr("sSpdDioOuUxXcChljzZ%.", *format))
 		format++;
 	if (*format == '.')
 	{

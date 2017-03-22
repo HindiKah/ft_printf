@@ -16,7 +16,8 @@ int		main(int argc, char **argv)
 
 
 
-	  ft_printf("@moulitest: %.5u", 42);
+
+	  ft_printf("|%-05%|");
 
 
 

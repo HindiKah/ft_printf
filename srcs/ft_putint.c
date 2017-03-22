@@ -69,7 +69,7 @@ void		puto(t_arg *tvar)
 		tvar->res += print_char(' ', tvar->p - sharp - (tvar->p0 > tvar->arg_len ? tvar->p0 : tvar->arg_len));
 	if (sharp != 0 && tvar->value != 0)
 		tvar->res += print_base_prefix(tvar->base, 0);
-		tvar->res += print_char('0', tvar->p0 - (sharp + tvar->arg_len));
+	tvar->res += print_char('0', tvar->p0 - (sharp + tvar->arg_len));
 	if (!(tvar->value == 0 && tvar->dot == 1) || sharp == 1)
 		tvar->res += rprint(1, tvar->ret, tvar->arg_len);
 	if (left == 1)
@@ -84,7 +84,11 @@ void		putst(t_arg *tvar)
 	str_precision(tvar);
 	left = (ft_strchr(tvar->pref, '-')) ? 1 : 0;
 	if (left == 0)
+	{
 		tvar->res += print_char(' ', tvar->p - tvar->p0);
+		if (ft_strchr(tvar->pref, '0'))
+			tvar->res += print_char('0', tvar->p - tvar->arg_len);
+	}
 	tvar->res += rprint(1, tvar->ret, (tvar->p0 >= tvar->arg_len) ? tvar->arg_len : tvar->p0);
 	if (left == 1)
 		tvar->res += print_char(' ', tvar->p - ((tvar->p0 < tvar->arg_len) ? tvar->p0 : tvar->arg_len));
@@ -117,7 +121,7 @@ void		putpercent(t_arg *tvar)
 		tvar->res += print_char('0', tvar->p0 - ft_strlen(tvar->ret));
 	tvar->res += rprint(1, tvar->ret, 1);
 	if (left == 1)
-		tvar->res +=print_char(' ', tvar->p - (tvar->p0 > ft_strlen(tvar->ret) ? tvar->p0 : ft_strlen(tvar->ret)));
+		tvar->res +=print_char(' ', tvar->p - 1);
 }
 
 void		putwstr(t_arg *tvar)
