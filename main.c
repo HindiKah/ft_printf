@@ -15,12 +15,7 @@ int		main(int argc, char **argv)
 
 
 
-
-
-
-
-
-	  ft_printf("%-05o", 2500);
+	  ft_printf("%05d", 42);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 20:45:12 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/02/13 15:31:08 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 13:53:27 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFTPRINTF_H
 # define FINT  "di\0"
 # define FUINT  "uUoxX\0"
+# define FUINTO  "o\0"
 # define FSTR  "s\0"
 # define FCHAR  "cC\0"
 # define FPERCENT  "%\0"
@@ -121,6 +122,7 @@ char			*insert_char(char *str, char c);
 int				print_char(char c, int i);
 void			putd(t_arg *tvar);
 void			putx(t_arg *tvar);
+void			puto(t_arg *tvar);
 void			putch(t_arg *tvar);
 void			putst(t_arg *tvar);
 void			putpercent(t_arg *tvar);

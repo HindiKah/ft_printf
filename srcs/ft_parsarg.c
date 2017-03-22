@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 15:00:01 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/02/14 21:57:18 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 15:17:53 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_arg		*parse_this_arg(t_arg *tvar, const char *format)
 	if (tvar->type == '\0')
 		return (NULL);
 	init_pflag(tvar, format);
-	while (*format && !ft_strchr(" 0123456789ljzhsSpdDioOuUxXcC%.", *format))
+	while (*format && ft_strchr("+0-#", *format))
 		format++;
 	if (!*format)
 		return (NULL);
@@ -84,14 +84,10 @@ t_arg		*parse_this_arg(t_arg *tvar, const char *format)
 
 t_arg		*init_precision(t_arg *tvar, const char *format)
 {
-	int space;
-
 	tvar->p0 = -1;
 	tvar->p = -1;
 	tvar->p = 0;
-	space = (*format == ' ') ? 1 : 0;
-	if ((format = whatisnext_c(format, ' '))[0] == '0')
-		tvar->space = 1;
+	tvar->space = (*format == ' ') ? 1 : 0;
 	tvar->p = ft_atoi(format);
 	while (*format && *format != '.' && !ft_strchr("sSpdDioOuUxXcChljz%.", *format))
 		format++;
@@ -101,7 +97,7 @@ t_arg		*init_precision(t_arg *tvar, const char *format)
 		format++;
 	}
 	tvar->p0 = ft_atoi(format);
-	if (tvar->p0 == 0 && tvar->p != 0 && tvar->space == 1)
+	if (tvar->p0 == 0 && tvar->p != 0 && ft_strchr(tvar->pref, '0'))
 		tvar->p0 = tvar->p;
 	return(tvar);
 }

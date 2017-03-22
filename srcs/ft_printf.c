@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 21:12:48 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/02/14 21:50:55 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 15:43:58 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ int			ft_printf(const char *format, ...)
 	my_funf = ft_init_funf(my_funf);
 	tvar = parse_args(tvar, format);
 	ft_do_all_fun(my_funf, my_func, all_arg, tvar);
+	ret = final_print(format, tvar, all_arg, my_func);
 /*
 	   int i = 0;
 	   while (i < ft_countparams(format))
 	   {
-	   printf("\nFT_PRINTF\nstruct s_arg:\n{\n\tindex = %d\n\tflag = %c\n\ttype= %c\n\tpref= %s\n\tprecision= %d\n\tprecision2= %d\n\ti_end= %d\n\tbase = %d\n\tSign = %d\n\tvalue = %d\n\tdot = %d\n\targend = %d\n\twlen = %d\n\tstr = %d\n\tRET = |%s|\n}\n\n", tvar[i].index, tvar[i].flag, tvar[i].type, tvar[i].pref, tvar[i].p, tvar[i].p0, tvar[i].argend, tvar[i].base,tvar[i].sign,tvar[i].value, tvar[i].dot, tvar[i].argend, tvar[i].wlen, tvar[i].res, tvar[i].ret);
+	   printf("\nFT_PRINTF\nstruct s_arg:\n{\n\tindex = %d\n\tflag = %c\n\ttype= %c\n\tpref= %s\n\tprecision= %d\n\tprecision2= %d\n\tspace= %d\n\tbase = %d\n\tSign = %d\n\tvalue = %d\n\tdot = %d\n\targend = %d\n\twlen = %d\n\tstr = %d\n\tRET = |%s|\n}\n\n", tvar[i].index, tvar[i].flag, tvar[i].type, tvar[i].pref, tvar[i].p, tvar[i].p0, tvar[i].space, tvar[i].base,tvar[i].sign,tvar[i].value, tvar[i].dot, tvar[i].argend, tvar[i].wlen, tvar[i].res, tvar[i].ret);
 	   i++;
 	   }
 */
-	ret = final_print(format, tvar, all_arg, my_func);
 	va_end(all_arg);
 	free(my_func);
 	free(my_funf);

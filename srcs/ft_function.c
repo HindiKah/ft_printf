@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 11:30:20 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/02/13 11:00:01 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/22 13:53:55 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 t_func		*ft_init_func(t_func *my_func)
 {
-	my_func = (t_func*)malloc(sizeof(t_func) * 7);
+	my_func = (t_func*)malloc(sizeof(t_func) * 8);
 	my_func[0].type = FINT;
 	my_func[0].f = &putd;
-	my_func[1].type = FUINT;
-	my_func[1].f = &putx;
-	my_func[2].type = FCHAR;
-	my_func[2].f = &putch;
-	my_func[3].type = FSTR;
-	my_func[3].f = &putst;
-	my_func[4].type = FPERCENT;
-	my_func[4].f = &putpercent;
-	my_func[5].type = FPOINTER;
-	my_func[5].f = &putx;
-	my_func[6].type = FCHARTAB;
-	my_func[6].f = &putwstr;
+	my_func[1].type = FUINTO;
+	my_func[1].f = &puto;
+	my_func[2].type = FUINT;
+	my_func[2].f = &putx;
+	my_func[3].type = FCHAR;
+	my_func[3].f = &putch;
+	my_func[4].type = FSTR;
+	my_func[4].f = &putst;
+	my_func[5].type = FPERCENT;
+	my_func[5].f = &putpercent;
+	my_func[6].type = FPOINTER;
+	my_func[6].f = &putx;
+	my_func[7].type = FCHARTAB;
+	my_func[7].f = &putwstr;
 
 	return (my_func);
 }
