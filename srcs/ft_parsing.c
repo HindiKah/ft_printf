@@ -22,3 +22,9 @@ t_arg		*ft_init_value(t_arg *tvar, va_list all_arg, t_funf *my_funf)
 	tvar = my_funf[i].f(tvar, all_arg);
 	return (tvar);
 }
+
+int			rprint(int fd, const char *str, int n)
+{
+	write(fd , str, n);
+	return (n);
+}

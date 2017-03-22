@@ -13,7 +13,7 @@
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 # define FINT  "di\0"
-# define FUINT  "uoxX\0"
+# define FUINT  "uUoxX\0"
 # define FSTR  "s\0"
 # define FCHAR  "cC\0"
 # define FPERCENT  "%\0"
@@ -42,7 +42,9 @@ typedef struct			s_arg
 	int					wlen;
 	int					str;
 	int					truearg;
+	size_t				arg_len;
 	char				*ret;
+	int					res;
 }						t_arg;
 
 typedef struct			s_func
@@ -82,7 +84,7 @@ t_arg			*flag_l(va_list all_arg, t_arg *tvar);
 t_arg			*flag_ll(va_list all_arg, t_arg *tvar);
 t_arg			*flag_j(va_list all_arg, t_arg *tvar);
 t_arg			*flag_z(va_list all_arg, t_arg *tvar);
-char			*add_c_i(int n);
+char			*add_c_i(intmax_t n);
 char			*add_c_ui(uintmax_t n, t_arg *tvar);
 char			*add_c_c(int n);
 char			*add_c_s(char *str);
@@ -116,7 +118,7 @@ t_arg			*treat_precision(t_arg *tvar, int i, int j, int k);
 t_arg			*parse_args(t_arg *tvar, const char *format);
 t_arg			*init_flag(t_arg *tvar, const char *format);
 char			*insert_char(char *str, char c);
-void			print_char(char c, int i);
+int				print_char(char c, int i);
 void			putd(t_arg *tvar);
 void			putx(t_arg *tvar);
 void			putch(t_arg *tvar);
@@ -124,7 +126,10 @@ void			putst(t_arg *tvar);
 void			putpercent(t_arg *tvar);
 void			putwstr(t_arg *tvar);
 char			*do_upper(char *str);
-void			print_base_prefix(int base, int maj);
+int				print_base_prefix(int base, int maj);
 void			print_arg(t_arg *tvar, t_func *my_func);
 int				wlen(int n);
+t_arg			*str_precision(t_arg *tvar);
+int				print_sign(t_arg *tvar);
+int				rprint(int fd, const char *str, int n);
 #endif

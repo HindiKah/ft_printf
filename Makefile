@@ -18,6 +18,7 @@ SRC_DIR=srcs
 SRC_BASE=ft_additfun.c\
 			ft_additfun2.c\
 			ft_additfun3.c\
+			ft_precision.c\
 			ft_putint.c\
 			wchar_fun.c\
 			ft_flags.c\

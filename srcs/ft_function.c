@@ -61,7 +61,8 @@ t_arg		*ft_do_all_fun(t_funf *my_funf, t_func *my_func, va_list all_arg, t_arg *
 	while (tvar[i].type != 'e')
 	{
 		ft_init_value(&tvar[i], all_arg, my_funf);
-		tvar->value = (tvar[i].ret[0] == '0') ? 0 : 1;
+		tvar[i].arg_len = ft_strlen(tvar[i].ret);
+		tvar[i].value = (tvar[i].ret[0] == '0') ? 0 : 1;
 		i++;
 	}
 	return (tvar);

@@ -76,7 +76,7 @@ t_arg		*init_pflag(t_arg *tvar, const char *format)
 	tmp = 0;
 	tvar->pref = (char*)malloc(sizeof(char) * (4));
 	j = 0;
-	while (format[tmp] && ft_strchr("sSudioxXp%ljzh+-#0123456789", format[tmp]))
+	while (format[tmp] && !ft_strchr("sSudioxXp%ljzh123456789", format[tmp]))
 		{
 		if (search_pflag(format, tmp) != 0)
 			tvar->pref[j++] = format[tmp];
@@ -88,7 +88,7 @@ t_arg		*init_pflag(t_arg *tvar, const char *format)
 
 char		search_pflag(const char *format, int i)
 {
-	if (ft_strchr("+#-", format[i]) != NULL)
+	if (ft_strchr("+#-0", format[i]) != NULL)
 		return (format[i]);
 	else
 		return (0);

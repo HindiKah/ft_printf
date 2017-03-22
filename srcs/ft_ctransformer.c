@@ -12,11 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
-char		*add_c_i(int n)
+char		*add_c_i(intmax_t n)
 {
 	char *ret;
 
-	ret = ft_itoabase(n, 10);
+	printf("N into add_c_i ==> %jd\n", n);
+	ret = ft_itoabase_uint(n, 10);
 	return (ret);
 }
 

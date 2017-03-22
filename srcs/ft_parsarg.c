@@ -12,8 +12,8 @@
 
 #include "../includes/ft_printf.h"
 /*	
-int i = 0;
-	while (i < ft_countparams(format))
+	i = 0;
+	while (i < nb_param + 1)
 	{
 		printf("\nFT_PRINTF\nstruct s_arg:\n{\n\tindex = %d\n\tflag = %c\n\ttype= %c\n\tpref= %s\n\tprecision= %d\n\tprecision2= %d\n\ti_end= %d\n\tbase = %d\n\tSign = %d\n\tvalue = %d\n\tdot = %d\n\targend = %d\n\twlen = %d\n\tRET = |%s|\n}\n\n", tvar[i].index, tvar[i].flag, tvar[i].type, tvar[i].pref, tvar[i].p, tvar[i].p0, tvar[i].argend, tvar[i].base,tvar[i].sign,tvar[i].value, tvar[i].dot, tvar[i].argend, tvar[i].wlen, tvar[i].ret);
 		i++;
@@ -26,8 +26,10 @@ t_arg		*parse_args(t_arg *tvar, const char *format)
 	int		i;
 	int		j;
 	int		i_tvar;
+	int		nb_param;
 
-	tvar = (t_arg*)malloc(sizeof(t_arg) * ft_countparams(format) + 1);
+	nb_param = ft_countparams(format);
+	tvar = (t_arg*)malloc(sizeof(t_arg) * (nb_param + 1));
 	i = 0;
 	j = 0;
 	i_tvar = 0;
@@ -49,7 +51,7 @@ t_arg		*parse_args(t_arg *tvar, const char *format)
 		}
 		i++;
 	}
-	tvar[i_tvar].type = 'e';
+	tvar[nb_param].type = 'e';
 	return (tvar);
 }
 

@@ -17,24 +17,23 @@ t_arg		*im_t(t_arg *tvar, va_list all_arg)
 	intmax_t n;
 
 	n = va_arg(all_arg, intmax_t);
-	tvar->value = (n == 0) ? 0 : 1;
-	tvar->sign = (n <  0 || n >= 2147483648) ? -1 : 1;
 	if (tvar->flag == '0')
-		tvar->ret = add_c_i((int)n * tvar->sign);
+		n = (int)n;
 	else if (tvar->flag == 'h')
-		tvar->ret = add_c_i((short int)n * tvar->sign);
+		n = (short int) n;
 	else if (tvar->flag == 'H')
-		tvar->ret = add_c_i((signed char)n * tvar->sign);
+		n = (signed char) n;
 	else if (tvar->flag == 'l')
-		tvar->ret = add_c_i((long int)n * tvar->sign);
+		n = (long int) n;
 	else if (tvar->flag == 'L')
-		tvar->ret = add_c_i((long long int)n * tvar->sign);
-	else if (tvar->flag == 'j')
-		tvar->ret = add_c_i(n * tvar->sign);
+		n = (long long int) n;
 	else if (tvar->flag == 'z')
-		tvar->ret = add_c_i((size_t)n * tvar->sign);
+		n = (size_t) n;
 	if (tvar->sign == -1 && !ft_strchr("tvar->pref", '+'))
 		insert_char(tvar->pref, '+');
+	tvar->value = (n == 0) ? 0 : 1;
+	tvar->sign = (n < 0) ? -1 : 1;
+	tvar->ret = ft_itoabase_uint(n * tvar->sign, 10);
 	return(tvar);
 }
 
@@ -43,21 +42,20 @@ t_arg		*uim_t(t_arg *tvar, va_list all_arg)
 	uintmax_t n;
 
 	n = va_arg(all_arg, uintmax_t);
-	tvar->value = (n == 0) ? 0 : 1;
 	if (tvar->flag == '0')
-		tvar->ret = add_c_ui((unsigned int)n, tvar);
+		n = (unsigned int)n;
 	else if (tvar->flag == 'h')
-		tvar->ret = add_c_ui((unsigned short int)n, tvar);
+		n = (unsigned short int)n;
 	else if (tvar->flag == 'H')
-		tvar->ret = add_c_ui((unsigned char)n,tvar);
+		n = (unsigned char)n;
 	else if (tvar->flag == 'l')
-		tvar->ret = add_c_ui((unsigned long int)n, tvar);
+		n = (unsigned long int)n;
 	else if (tvar->flag == 'L')
-		tvar->ret = add_c_ui((unsigned long long int)n, tvar);
-	else if (tvar->flag == 'j')
-		tvar->ret = add_c_ui(n, tvar);
+		n = (unsigned long long int)n;
 	else if (tvar->flag == 'z')
-		tvar->ret = add_c_ui((size_t)n, tvar);
+		n = (size_t)n;
+	tvar->value = (n == 0) ? 0 : 1;
+	tvar->ret = add_c_ui(n, tvar);
 	return(tvar);
 }
 
