@@ -76,12 +76,22 @@ t_arg		*init_pflag(t_arg *tvar, const char *format)
 	tmp = 0;
 	tvar->pref = (char*)malloc(sizeof(char) * (4));
 	j = 0;
-	while (format[tmp] && !ft_strchr("sSuUdioxXZp%123456789", format[tmp]))
-		{
+	while (format[tmp] && !ft_strchr("sSuUdioxXZp%", format[tmp]))
+	{
 		if (search_pflag(format, tmp) != 0)
-			tvar->pref[j++] = format[tmp];
-		tmp++;
+		{
+			if (format[tmp] == '0' && ft_strchr(tvar->pref, '0')
+					&& !ft_strchr("123456789", format[tmp - 1]))
+			{
+				j--;
+				delete_char(tvar->pref, format[tmp]);
+			}
+			else
+				tvar->pref[j++] = format[tmp];
+			tvar->pref[j] = '\0';
 		}
+		tmp++;
+	}
 	tvar->pref[j] = '\0';
 	return (tvar);
 }

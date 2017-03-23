@@ -50,3 +50,25 @@ int			print_sign(t_arg *tvar)
 		write(1, "+", 1);
 	return (1);
 }
+
+void		delete_char(char *str, char c)
+{
+	while (*str && *str != c)
+		str++;
+	if (*str == c)
+	{
+		while (*str)
+		{
+			if (*(str + 1) == '\0')
+			{
+				*str = '\0';
+				return;
+			}
+			else
+			{
+				*str = *(str + 1);
+				str++;
+			}
+		}
+	}
+}

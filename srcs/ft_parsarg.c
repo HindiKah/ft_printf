@@ -15,10 +15,10 @@
 	i = 0;
 	while (i < nb_param + 1)
 	{
-		printf("\nFT_PRINTF\nstruct s_arg:\n{\n\tindex = %d\n\tflag = %c\n\ttype= %c\n\tpref= %s\n\tprecision= %d\n\tprecision2= %d\n\ti_end= %d\n\tbase = %d\n\tSign = %d\n\tvalue = %d\n\tdot = %d\n\targend = %d\n\twlen = %d\n\tRET = |%s|\n}\n\n", tvar[i].index, tvar[i].flag, tvar[i].type, tvar[i].pref, tvar[i].p, tvar[i].p0, tvar[i].argend, tvar[i].base,tvar[i].sign,tvar[i].value, tvar[i].dot, tvar[i].argend, tvar[i].wlen, tvar[i].ret);
-		i++;
+	printf("\nFT_PRINTF\nstruct s_arg:\n{\n\tindex = %d\n\tflag = %c\n\ttype= %c\n\tpref= %s\n\tprecision= %d\n\tprecision2= %d\n\ti_end= %d\n\tbase = %d\n\tSign = %d\n\tvalue = %d\n\tdot = %d\n\targend = %d\n\twlen = %d\n\tRET = |%s|\n}\n\n", tvar[i].index, tvar[i].flag, tvar[i].type, tvar[i].pref, tvar[i].p, tvar[i].p0, tvar[i].argend, tvar[i].base,tvar[i].sign,tvar[i].value, tvar[i].dot, tvar[i].argend, tvar[i].wlen, tvar[i].ret);
+	i++;
 	}
-*/
+	*/
 t_arg		*parse_this_arg(t_arg *tvar, const char *format);
 
 t_arg		*parse_args(t_arg *tvar, const char *format)
@@ -61,7 +61,10 @@ t_arg		*parse_this_arg(t_arg *tvar, const char *format)
 
 	i = 0;
 	if (tvar->type == '\0')
+	{
+		tvar->type = 'e';
 		return (NULL);
+	}
 	init_pflag(tvar, format);
 	while (*format && ft_strchr("+0-#", *format))
 		format++;
@@ -69,7 +72,7 @@ t_arg		*parse_this_arg(t_arg *tvar, const char *format)
 		return (NULL);
 	init_precision(tvar, format);
 	while (*format && ft_strchr(" 0123456789.", *format))
-			format++;
+		format++;
 	init_flag(tvar, format);
 	if (ft_strchr("diuU", tvar->type))
 	{
@@ -95,6 +98,8 @@ t_arg		*init_precision(t_arg *tvar, const char *format)
 	tvar->p = -1;
 	tvar->p = 0;
 	tvar->space = (*format == ' ') ? 1 : 0;
+	while (*format && !ft_strchr("123456789", *format))
+		format++;
 	tvar->p = ft_atoi(format);
 	while (*format && *format != '.' && !ft_strchr("sSpdDioOuUxXcChljzZ%.", *format))
 		format++;
@@ -111,14 +116,18 @@ t_arg		*init_precision(t_arg *tvar, const char *format)
 
 t_arg		*init_flag(t_arg *tvar, const char *format)
 {
-	if (*format + 2)
+	while (*format && ft_strchr("hljz", *format))
 	{
-		tvar->flag = (ft_strchr("hljz",  *format)) ? *format : '0';
-		if ((tvar->flag == 'h' || tvar->flag == 'l') && tvar->flag == format[1])
-			tvar->flag = ft_toupper(tvar->flag);
+		if (*format + 2)
+		{
+			tvar->flag = (ft_strchr("hljz",  *format)) ? *format : '0';
+			if ((tvar->flag == 'h' || tvar->flag == 'l') && tvar->flag == format[1])
+				tvar->flag = ft_toupper(tvar->flag);
+		}
+		else
+			tvar->flag = '0';
+		format++;
 	}
-	else
-		tvar->flag = '0';
 	return (tvar);
 }
 

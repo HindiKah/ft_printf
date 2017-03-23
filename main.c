@@ -17,11 +17,8 @@ int		main(int argc, char **argv)
 
 
 
-	  ft_printf("|%-05%|");
-
-
-
-
+	
+	ft_printf("%hhld", 128);
 
 
 	return (0);

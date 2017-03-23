@@ -134,4 +134,5 @@ int				wlen(int n);
 t_arg			*str_precision(t_arg *tvar);
 int				print_sign(t_arg *tvar);
 int				rprint(int fd, const char *str, int n);
+void			delete_char(char *str, char c);
 #endif

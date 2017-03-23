@@ -77,7 +77,7 @@ int			final_print(const char *format, t_arg *tvar, va_list all_arg, t_func *my_f
 			i++;
 		}
 	}
-	if (format[tmp] && format[tmp] != '%')
-		ret += rprint(1, format + tmp, j);
+	while (format[tmp] && format[tmp] != '%')
+		ret += rprint(1, format + tmp++, 1);
 	return (ret);
 }
