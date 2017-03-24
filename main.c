@@ -13,13 +13,9 @@ int		main(int argc, char **argv)
 	int i = -0;
 	int j = 5;
 
-
-
-
-
-	
-	ft_printf("%hhld", 128);
-
+	ft_printf("{%}");
+	ft_printf("\n");
+	printf("{%}");
 
 	return (0);
 }

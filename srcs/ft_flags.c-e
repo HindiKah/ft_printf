@@ -17,22 +17,20 @@ t_arg		*im_t(t_arg *e, va_list all_arg)
 	intmax_t n;
 
 	n = va_arg(all_arg, intmax_t);
-	if (e->j)
-		n = n;
-	else if (e->z)
-		n = (size_t) n;
-	else if (e->ll)
-		n = (long long int) n;
-	else if (e->l)
-		n = (long int) n;
-	else if (e->hh)
-		n = (signed char) n;
+	if (e->flag == '0')
+		n = (int)n;
 	else if (e->h)
 		n = (short int) n;
-	else
-		n = (int)n;
-	if (e->sign == -1 && !e->more)
-		e->more = 1;
+	else if (e->hh)
+		n = (signed char) n;
+	else if (e->l)
+		n = (long int) n;
+	else if (e->ll)
+		n = (long long int) n;
+	else if (e->flag == 'z')
+		n = (size_t) n;
+	if (e->sign == -1 && !ft_strchr("e->pref", '+'))
+		insert_char(e->pref, '+');
 	e->value = (n == 0) ? 0 : 1;
 	e->sign = (n < 0) ? -1 : 1;
 	e->ret = ft_itoabase_uint(n * e->sign, 10);
@@ -44,20 +42,18 @@ t_arg		*uim_t(t_arg *e, va_list all_arg)
 	uintmax_t n;
 
 	n = va_arg(all_arg, uintmax_t);
-	if (e->j)
-		n = n;
-	else if (e->z)
-		n = (size_t)n;
-	else if (e->ll)
-		n = (unsigned long long int)n;
-	else if (e->l)
-		n = (unsigned long int)n;
-	else if (e->hh)
-		n = (unsigned char)n;
+	if (e->flag == '0')
+		n = (unsigned int)n;
 	else if (e->h)
 		n = (unsigned short int)n;
-	else
-		n = (unsigned int)n;
+	else if (e->hh)
+		n = (unsigned char)n;
+	else if (e->l)
+		n = (unsigned long int)n;
+	else if (e->ll)
+		n = (unsigned long long int)n;
+	else if (e->flag == 'z')
+		n = (size_t)n;
 	e->value = (n == 0) ? 0 : 1;
 	e->ret = add_c_ui(n, e);
 	return(e);
@@ -69,12 +65,18 @@ t_arg		*ch_add(t_arg *e, va_list all_arg)
 	intmax_t n;
 
 	n = va_arg(all_arg, uintmax_t);
+	/*if (e->l)
+	  e->ret = add_c_wc((unsigned long int)n);
+	  else*/
 	e->ret = add_c_c((int)n);
 	return(e);
 }
 
 t_arg		*str_add(t_arg *e, va_list all_arg)
 {
+	/*if (e->l)
+	  e->ret = add_c_ws(va_arg(all_arg, wchar_t));
+	  else*/
 	char *ret;
 	
 	ret = va_arg(all_arg, char*);
@@ -104,11 +106,10 @@ t_arg		*pointer_add(t_arg *e, va_list all_arg)
 	void				*n_tmp;
 	t_arg				tmp;
 
-	e->sharp = 1;
-	e->value = 1;
+	e->pref = add_char(e->pref, '#');
 	tmp = *e;
 	n_tmp = va_arg(all_arg, void*);
-	tmp.l = 1;
+	tmp.flag = 'l';
 	tmp.base = 16;
 	e->ret = add_c_ui((unsigned long int) n_tmp, &tmp);
 	return(e);

@@ -19,7 +19,7 @@ SRC_BASE=ft_additfun.c\
 			ft_additfun2.c\
 			ft_additfun3.c\
 			ft_precision.c\
-			ft_putint.c\
+			ft_putarg.c\
 			wchar_fun.c\
 			ft_flags.c\
 			ft_printf.c\
@@ -28,7 +28,6 @@ SRC_BASE=ft_additfun.c\
 			ft_function.c\
 			ft_parsarg.c\
 			ft_ctransformer.c\
-			ft_pflags.c\
 			ft_atoi.c\
 			ft_bzero.c\
 			ft_char_count.c\

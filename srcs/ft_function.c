@@ -15,6 +15,8 @@
 t_func		*ft_init_func(t_func *my_func)
 {
 	my_func = (t_func*)malloc(sizeof(t_func) * 8);
+	if (!my_func)
+		return (NULL);
 	my_func[0].type = FINT;
 	my_func[0].f = &putd;
 	my_func[1].type = FUINTO;
@@ -38,6 +40,8 @@ t_func		*ft_init_func(t_func *my_func)
 t_funf		*ft_init_funf(t_funf *my_funf)
 {
 	my_funf = (t_funf*)malloc(sizeof(t_funf) * 7);
+	if (!my_funf)
+		return (NULL);
 	my_funf[0].flag = FINT;
 	my_funf[0].f = &im_t;
 	my_funf[1].flag = FUINT;
@@ -55,28 +59,28 @@ t_funf		*ft_init_funf(t_funf *my_funf)
 	return (my_funf);
 }
 
-t_arg		*ft_do_all_fun(t_funf *my_funf, t_func *my_func, va_list all_arg, t_arg *tvar)
+t_arg		*ft_do_all_fun(t_funf *my_funf, t_func *my_func, va_list all_arg, t_arg *e)
 {
 	int i;
 
 	i = 0;
-	while (tvar[i].type != 'e')
+	while (e[i].type != 'e')
 	{
-		ft_init_value(&tvar[i], all_arg, my_funf);
-		tvar[i].arg_len = ft_strlen(tvar[i].ret);
-		tvar[i].value = (tvar[i].ret[0] == '0') ? 0 : 1;
+		ft_init_value(&e[i], all_arg, my_funf);
+		e[i].arg_len = ft_strlen(e[i].ret);
+		e[i].value = (e[i].ret[0] == '0' && e[i].type != 'p') ? 0 : 1;
 		i++;
 	}
-	return (tvar);
+	return (e);
 }
 
-void		print_arg(t_arg *tvar, t_func *my_func)
+void		print_arg(t_arg *e, t_func *my_func)
 {
 	int		i;
 
 	i = 0;
-	while (!ft_strchr(my_func[i].type, tvar->type))
+	while (!ft_strchr(my_func[i].type, e->type))
 		i++;
-	my_func[i].f(tvar);
+	my_func[i].f(e);
 }
 

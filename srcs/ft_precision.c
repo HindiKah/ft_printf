@@ -1,10 +1,11 @@
 #include "../includes/ft_printf.h"
 
-t_arg		*str_precision(t_arg *tvar)
+t_arg		*str_precision(t_arg *e)
 {
-	if (tvar->p0 == 0 && tvar->dot == 0)
-		tvar->p0 = tvar->arg_len;
-	if (tvar->p0 > tvar->arg_len && tvar->p > tvar->p0 && tvar->arg_len == 0)
-		tvar->p0 = 0;
-	return (tvar);
+	if (e->p0 == 0 && e->dot == 0)
+		e->p0 = e->arg_len;
+	if (e->p0 > e->arg_len && e->p > e->p0 && e->arg_len == 0)
+		e->p0 = 0;
+	e->arg_len = (e->p0 < e->arg_len && e->p0 != 0) ? e->p0 : e->arg_len;
+	return (e);
 }

@@ -42,9 +42,9 @@ char		*do_upper(char *str)
 	return (str);
 }
 
-int			print_sign(t_arg *tvar)
+int			print_sign(t_arg *e)
 {
-	if (tvar->sign == -1)
+	if (e->sign == -1)
 		write(1, "-", 1);
 	else
 		write(1, "+", 1);
