@@ -12,12 +12,12 @@
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
-# define ARG "diuUoxXscC%ZpS"
-# define NUM "123456789000"
+# define ARG "DdiuUoOxXSscC%Zp"
+# define NUM "1234567890"
 # define PREF "0#-+ "
-# define FINT  "di\0"
-# define FUINT  "uUoxX\0"
-# define FUINTO  "ou\0"
+# define FINT  "Ddi\0"
+# define FUINT  "uUoOxX\0"
+# define FUINTO  "Oou\0"
 # define FSTR  "s\0"
 # define FCHAR  "cC\0"
 # define FPERCENT  "%Z\0"
@@ -146,4 +146,5 @@ int				print_sign(t_arg *e);
 int				rprint(int fd, const char *str, int n);
 void			delete_char(char *str, char c);
 t_arg			*init_e(t_arg *e, int n);
+void			print_debug(t_arg e);
 #endif

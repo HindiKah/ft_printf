@@ -30,7 +30,7 @@ t_arg		*init_pflag(t_arg *e, const char *format)
 	int tmp;
 
 	tmp = 0;
-	while (format[tmp] && !ft_strchr("sSuUdioxXZp%", format[tmp]))
+	while (format[tmp] && !ft_strchr(ARG, format[tmp]))
 	{
 		if (ft_strchr(PREF, format[tmp]))
 		{

@@ -40,7 +40,7 @@ void		putx(t_arg *e)
 		e->res += print_char(' ', e->p - sharp - (e->p0 > e->arg_len ? e->p0 : e->arg_len));
 	if (sharp != 0 && e->value != 0)
 		e->res += print_base_prefix(e->base, maj);
-	if (left == 0 && e->dot == 0)
+	if (left == 0)
 		e->res += print_char('0', e->p0 - (sharp + e->arg_len));
 	if (e->value != 0 || e->dot == 0)
 		e->res += rprint(1, (maj == 1) ? do_upper(e->ret) : e->ret, e->arg_len);
@@ -101,8 +101,10 @@ void		putch(t_arg *e)
 	left = (e->right) ? 1 : 0;
 	if (left == 0)
 		e->res += print_char(' ', e->p - (e->p0 > e->wlen ? e->p0 : e->wlen));
-	if (left == 0 && e->ret[0])
+	if (left == 0 && e->ret[0] != '\0')
 		e->res += print_char('0', e->p0 - e->wlen);
+	if (e->type == 'c')
+		e->wlen = 1;
 	e->res += rprint(1, e->ret, e->wlen);
 	if (left == 1)
 		e->res += print_char(' ', e->p - (e->p0 > e->wlen ? e->p0 : e->wlen));
@@ -127,11 +129,14 @@ void		putpercent(t_arg *e)
 void		putwstr(t_arg *e)
 {
 	int		left;
+	int		i;
 
+	i = 0;
 	left = (e->right) ? 1 : 0;
 	if (left == 0)
 		e->res += print_char(' ', e->p - e->wlen);
-	e->res += rprint(1, e->ret, e->wlen);
+	while (*(e->ret + i))
+		e->res += rprint(1, e->ret + i++, 1);
 	if (left == 1)
 		e->res += print_char(' ', e->p - e->wlen);
 }

@@ -19,6 +19,7 @@ t_arg		*parse_args(t_arg *e, const char *format)
 	int		j;
 	int		i_e;
 
+	e = (t_arg*)malloc(sizeof(t_arg) * (ft_countparams(format) + 1));
 	e = init_e(e, ft_countparams(format));
 	i = 0;
 	j = 0;
@@ -29,13 +30,13 @@ t_arg		*parse_args(t_arg *e, const char *format)
 		{
 			j = i + 1;
 			e[i_e].index = i;
-			while (format[j] && !ft_strchr(ARG, format[j]))
+			while (format[j] && !ft_strchr(ARG, format[j]) && ft_strchr("1234567890 hljz.#+-", format[j]))
 				j++;
 			e[i_e].type = format[j];
 			e[i_e].argend = j + 1;
 			e[i_e].index = i;
 			parse_this_arg(&e[i_e], format + i + 1);
-			i = (e[i_e].type == '%') ? j + 1 : j;
+			i = j;
 			i_e++;
 		}
 		i++;
@@ -49,8 +50,7 @@ t_arg		*init_e(t_arg *e, int n)
 	int		e_i;
 
 	e_i = 0;
-	e = (t_arg*)malloc(sizeof(t_arg) * (n + 1));
-	while (e_i++ < n)
+	while (e_i < n)
 	{
 		e[e_i].h = 0;
 		e[e_i].hh = 0;
@@ -58,11 +58,14 @@ t_arg		*init_e(t_arg *e, int n)
 		e[e_i].ll = 0;
 		e[e_i].j = 0;
 		e[e_i].z = 0;
+		e[e_i].dot = 0;
 		e[e_i].sharp = 0;
 		e[e_i].space = 0;
 		e[e_i].zero = 0;
 		e[e_i].right = 0;
 		e[e_i].more = 0;
+		e[e_i].res = 0;
+		e[e_i++].argend = 0;
 	}
 	e[e_i].type = 'e';
 	return (e);
@@ -87,13 +90,16 @@ t_arg		*parse_this_arg(t_arg *e, const char *format)
 	//while (*format && ft_strchr(" 0123456789.", *format))
 	//	format++;
 	init_flag(e, format);
+	if (ft_strchr("DUO", e->type))
+	{
+		e->type = e->type - 'A' + 'a';
+		e->l = 1;
+	}
+	if (ft_strchr("cs", e->type) && e->l == 1)
+		e->type = e->type - 'a' + 'A';
+
 	if (ft_strchr("diuU", e->type))
 	{
-		if (e->type == 'U')
-		{
-			e->type = 'u';
-			e->l = 1;
-		}
 		e->base = 10;
 	}
 	else if (ft_strchr("pxX", e->type))
@@ -110,7 +116,7 @@ t_arg		*init_precision(t_arg *e, const char *format)
 	e->p0 = -1;
 	e->p = -1;
 	if (ft_strchr(ARG, *format))
-			return (e);
+		return (e);
 	while (*format && !ft_strchr("123456789.", *format))
 		format++;
 	e->p = ft_atoi(format);

@@ -23,7 +23,9 @@ char		*add_c_wc(wchar_t c)
 	size_t	size;
 
 	size = wlen(c);
-	ret = (char*)malloc(sizeof(int) * (size + 2));
+	ret = (char*)malloc(sizeof(int) * (size + 1));
+	if (!ret)
+		return (NULL);
 	ret = wchar_to_char(c, size, ret);
 	return (ret);
 }

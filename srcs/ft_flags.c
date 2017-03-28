@@ -76,14 +76,17 @@ t_arg		*ch_add(t_arg *e, va_list all_arg)
 t_arg		*str_add(t_arg *e, va_list all_arg)
 {
 	char *ret;
-	
+
+	if (e->l == 1)
+	{
+		e = wstr_add(e, all_arg);
+		return (e);
+	}
 	ret = va_arg(all_arg, char*);
-	if (ret != 0)
+	if (ret)
 		e->ret = ft_strdup(ret);
 	else
-	{
 		e->ret = ft_strdup("(null)");
-	}
 	return(e);
 }
 
@@ -127,17 +130,19 @@ t_arg		*wchar_add(t_arg *e, va_list all_arg)
 t_arg		*wstr_add(t_arg *e, va_list all_arg)
 {
 	wchar_t		*n;
+	int			i;
 
-		e->wlen = 0; 
+	e->wlen = 0; 
+	i = 0;
 	n = va_arg(all_arg, wchar_t*);
-	while (*n)
+	while (n[i])
 	{
 		e->wlen++;
-		if (!e->ret)
-			e->ret = ft_strdup(add_c_wc(*n));
+		if (e->ret == NULL)
+			e->ret = add_c_wc(n[i]);
 		else
-			e->ret = ft_strjoin_free(e->ret , add_c_wc(*n));
-		n++;
+			e->ret = ft_strjoin_free(e->ret, add_c_wc(n[i]));
+		i++;
 	}
 	return (e);
 }
