@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 15:00:01 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 17:13:35 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/29 15:18:23 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_arg		*parse_args(t_arg *e, const char *format)
 	int		j;
 	int		i_e;
 
-	e = (t_arg*)malloc(sizeof(t_arg) * (ft_countparams(format) + 1));
 	e = init_e(e, ft_countparams(format));
 	i = 0;
 	j = 0;
@@ -30,12 +29,13 @@ t_arg		*parse_args(t_arg *e, const char *format)
 		{
 			j = i + 1;
 			e[i_e].index = i;
-			while (format[j] && !ft_strchr(ARG, format[j]) && ft_strchr("1234567890 hljz.#+-", format[j]))
+			while (format[j] && !ft_strchr(ARG, format[j]) 
+					&& ft_strchr("1234567890 hljz.#+-", format[j]))
 				j++;
-			e[i_e].type = format[j];
+			e[i_e].type = (ft_strchr(ARG, format[j])) ? format[j] : 'e';
 			e[i_e].argend = j + 1;
 			e[i_e].index = i;
-			parse_this_arg(&e[i_e], format + i + 1);
+			(e[i_e].type != 'e') ? parse_this_arg(&e[i_e], format + i + 1) : 0;
 			i = j;
 			i_e++;
 		}
@@ -49,6 +49,7 @@ t_arg		*init_e(t_arg *e, int n)
 {
 	int		e_i;
 
+	e = (t_arg*)malloc(sizeof(t_arg) * (n + 1));
 	e_i = 0;
 	while (e_i < n)
 	{

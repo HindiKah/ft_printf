@@ -15,11 +15,12 @@ int		main(int argc, char **argv)
 	}
 	int i = -0;
 	int j = 5;
+	int c= 0;
 
-	//	ft_printf("%S%S", L"Α α", L"Β β");
-	ft_putnbr(printf("%.4x", 42));
+	printf("%15.4S", L"我是一只猫。");
 	printf("\n");
-	ft_putnbr(ft_printf("%.4x", 42));
+	ft_putnbr(ft_printf("%15.4S", L"我是一只猫。"));
+	printf("\n");
 
 	/*	ft_putnbr(ft_printf("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S",
 		L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ",

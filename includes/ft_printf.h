@@ -6,13 +6,13 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 20:45:12 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 17:16:37 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/29 17:37:26 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
-# define ARG "DdiuUoOxXSscC%Zp"
+# define ARG "DdiuUoOxXSscC%ZRp"
 # define NUM "1234567890"
 # define PREF "0#-+ "
 # define FINT  "Ddi\0"
@@ -20,7 +20,7 @@
 # define FUINTO  "Oou\0"
 # define FSTR  "s\0"
 # define FCHAR  "cC\0"
-# define FPERCENT  "%Z\0"
+# define FPERCENT  "%ZR\0"
 # define FPOINTER  "p\0"
 # define FCHARTAB  "S\0"
 
@@ -54,6 +54,8 @@ typedef struct			s_arg
 	int					wlen;
 	int					str;
 	size_t				arg_len;
+	int					spec;
+	wchar_t				*wchar;
 	char				*ret;
 	int					res;
 }						t_arg;
@@ -147,4 +149,5 @@ int				rprint(int fd, const char *str, int n);
 void			delete_char(char *str, char c);
 t_arg			*init_e(t_arg *e, int n);
 void			print_debug(t_arg e);
+t_arg			*d_precision(t_arg *e);
 #endif

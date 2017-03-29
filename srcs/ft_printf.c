@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 21:12:48 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 17:11:09 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/29 18:11:44 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,11 @@ int			final_print(const char *format, t_arg *e, va_list all_arg, t_func *my_func
 			i++;
 		}
 	}
-	while (format[tmp] && format[tmp] != '%')
-		ret += rprint(1, format + tmp++, 1);
+	while (format[tmp])
+	{
+		ret += (format[tmp] != '%') ? rprint(1, format + tmp, 1) : 0;
+		tmp++;
+	}
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 14:43:58 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/22 17:17:49 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/03/29 17:47:07 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,13 @@ t_arg		*str_add(t_arg *e, va_list all_arg)
 
 t_arg		*percent_add(t_arg *e, va_list all_arg)
 {
-	if (e->type != 'Z')
+	if (e->type != 'Z' && e->type != 'R')
 		e->ret = add_percent();
 	else
 	{
 		e->ret = (char*)malloc(sizeof(char) * 2);
-		e->ret = "Z\0";
+		e->ret[0] = e->type;
+		e->ret[1] = '\0';
 	}
 	return(e);
 }
@@ -135,14 +136,27 @@ t_arg		*wstr_add(t_arg *e, va_list all_arg)
 	e->wlen = 0; 
 	i = 0;
 	n = va_arg(all_arg, wchar_t*);
-	while (n[i])
+	if (n && n[0] != '\0')
+	{	
+		while (n[i])
+		{
+			e->wlen++;
+			if (e->ret == NULL)
+				e->ret = add_c_wc(n[i]);
+			else
+				e->ret = ft_strjoin_free(e->ret, add_c_wc(n[i]));
+			i++;
+		}
+		e->wchar = n;
+		e->spec = 0;
+	}
+	else
 	{
-		e->wlen++;
-		if (e->ret == NULL)
-			e->ret = add_c_wc(n[i]);
-		else
-			e->ret = ft_strjoin_free(e->ret, add_c_wc(n[i]));
-		i++;
+		if (!n)
+			e->ret = ft_strdup("(null)");
+		else if (n)
+			e->ret = "\0";
+		e->spec = 1;
 	}
 	return (e);
 }
