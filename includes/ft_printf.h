@@ -134,6 +134,7 @@ char			*insert_char(char *str, char c);
 int				print_char(char c, int i);
 void			putd(t_arg *e);
 void			putx(t_arg *e);
+void			putp(t_arg *e);
 void			puto(t_arg *e);
 void			putch(t_arg *e);
 void			putst(t_arg *e);

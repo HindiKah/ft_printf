@@ -30,13 +30,8 @@ int			ft_printf(const char *format, ...)
 
 	
 
-	int i = 0;
-	while (i < 16)
-	{
-		if (e[i].res != 0)
-			ft_putnbr(i);
-		i++;
-	}
+//	int i = 0;
+//	while (i < 2)
 //		print_debug(e[i++]);
 
 
@@ -90,5 +85,5 @@ int			final_print(const char *format, t_arg *e, va_list all_arg, t_func *my_func
 
 void		print_debug(t_arg e)
 {
-	printf("\n\nT_ARG %d type-> %c\nl = %d\nll = %d\nh = %d\nhh = %d\nj = %d\nz = %d\np = %d && p0 = %d && dot = %d\n# = %d\n+ == %d\n- = %d\nspace = %d\nzero = %d\nargend = %d\n\tret = %s -> arglen = %d\n", e.index, e.type, e.l, e.ll, e.h, e.hh, e.j, e.z, e.p, e.p0, e.dot,  e.sharp, e.more, e.right, e.space, e.zero, e.argend, e.ret, e.arg_len);
+	printf("\n\nT_ARG %d type-> %c\nl = %d\nll = %d\nh = %d\nhh = %d\nj = %d\nz = %d\np = %d && p0 = %d && dot = %d\n# = %d\n+ == %d\n- = %d\nspace = %d\nzero = %d\nargend = %d\nvalue = %d\n\tret = %s -> arglen = %d\n", e.index, e.type, e.l, e.ll, e.h, e.hh, e.j, e.z, e.p, e.p0, e.dot,  e.sharp, e.more, e.right, e.space, e.zero, e.argend, e.value,  e.ret, e.arg_len);
 }

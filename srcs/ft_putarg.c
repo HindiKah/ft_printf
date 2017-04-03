@@ -195,3 +195,25 @@ int			howmanytoprint(t_arg *e)
 		}
 	return (size_read - wlen(*e->wchar));
 }
+
+void		putp(t_arg *e)
+{
+	int		left;
+	int		sharp;
+
+	sharp = (e->sharp == 1) ? 2 : 0;
+	left = (e->right == 1) ? 1 : 0;
+	if (left == 0)
+		e->res += print_char(' ', e->p - sharp - (e->p0 > e->arg_len ? e->p0 : e->arg_len));
+	if (sharp != 0 && e->value != 0)
+		e->res += print_base_prefix(e->base, 0);
+	if (left == 0)
+		e->res += print_char('0', e->p0 - e->arg_len - ((e->zero == 1) ? sharp : 0));
+	if (e->value != 0 || e->dot == 0)
+		e->res += rprint(1, e->ret, e->arg_len);
+	if (left == 1)
+	{
+		e->p0 = (e->zero == 1) ? 0 : e->p0;
+		e->res += print_char(' ', e->p - 2 - (e->p0 > ft_strlen(e->ret) ? e->p0 : e->arg_len));
+	}
+}

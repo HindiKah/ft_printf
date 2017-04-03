@@ -116,7 +116,10 @@ t_arg		*pointer_add(t_arg *e, va_list all_arg)
 	n_tmp = va_arg(all_arg, void*);
 	tmp.l = 1;
 	tmp.base = 16;
-	e->ret = add_c_ui((unsigned long int) n_tmp, &tmp);
+	if (n_tmp || e->dot == 0)
+		e->ret = add_c_ui((unsigned long int) n_tmp, &tmp);
+	else
+		e->ret = ft_strdup("");
 	return(e);
 }
 

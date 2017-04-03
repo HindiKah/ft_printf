@@ -30,7 +30,7 @@ t_func		*ft_init_func(t_func *my_func)
 	my_func[5].type = FPERCENT;
 	my_func[5].f = &putpercent;
 	my_func[6].type = FPOINTER;
-	my_func[6].f = &putx;
+	my_func[6].f = &putp;
 	my_func[7].type = FCHARTAB;
 	my_func[7].f = &putwstr;
 
