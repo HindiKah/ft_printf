@@ -51,7 +51,7 @@ t_arg		*init_e(t_arg *e, int n)
 
 	e = (t_arg*)malloc(sizeof(t_arg) * (n + 1));
 	e_i = 0;
-	while (e_i < n)
+	while (e_i <= n)
 	{
 		e[e_i].h = 0;
 		e[e_i].hh = 0;

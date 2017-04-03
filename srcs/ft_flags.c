@@ -70,6 +70,8 @@ t_arg		*ch_add(t_arg *e, va_list all_arg)
 
 	n = va_arg(all_arg, uintmax_t);
 	e->ret = add_c_c((int)n);
+	if (e->dot == 1)
+		e->p0 = 0;
 	return(e);
 }
 
@@ -125,6 +127,8 @@ t_arg		*wchar_add(t_arg *e, va_list all_arg)
 	n = (wchar_t)va_arg(all_arg, wint_t);
 	e->wlen = wlen(n);
 	e->ret = add_c_wc(n);
+	if (e->dot == 1)
+		e->p0 = 0;
 	return (e);
 }
 

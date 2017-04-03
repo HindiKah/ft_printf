@@ -26,17 +26,23 @@ int			ft_printf(const char *format, ...)
 	my_func = ft_init_func(my_func);
 	my_funf = ft_init_funf(my_funf);
 	e = parse_args(e, format);
-	ft_do_all_fun(my_funf, my_func, all_arg, e);
-	ret = final_print(format, e, all_arg, my_func);
 
 
-//	int i = 0;
-//	while (i < 1)
+	
+
+	int i = 0;
+	while (i < 16)
+	{
+		if (e[i].res != 0)
+			ft_putnbr(i);
+		i++;
+	}
 //		print_debug(e[i++]);
 
 
 
-
+	ft_do_all_fun(my_funf, my_func, all_arg, e);
+	ret = final_print(format, e, all_arg, my_func);
 	va_end(all_arg);
 	//free(my_func);
 	//free(my_funf);

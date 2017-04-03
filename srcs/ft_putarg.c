@@ -1,5 +1,6 @@
 #include "../includes/ft_printf.h"
 
+int			howmanytoprint(t_arg *e);
 void		putd(t_arg *e)
 {
 	int		less;
@@ -97,12 +98,12 @@ void		putch(t_arg *e)
 	int		left;
 
 	left = (e->right) ? 1 : 0;
+	if (e->type == 'c')
+		e->wlen = 1;
 	if (left == 0)
 		e->res += print_char(' ', e->p - (e->p0 > e->wlen ? e->p0 : e->wlen));
 	if (left == 0)
 		e->res += print_char('0', e->p0 - e->wlen);
-	if (e->type == 'c')
-		e->wlen = 1;
 	e->res += rprint(1, e->ret, e->wlen);
 	if (left == 1)
 		e->res += print_char(' ', e->p - (e->p0 > e->wlen ? e->p0 : e->wlen));
@@ -148,9 +149,10 @@ void		putwstr(t_arg *e)
 	left = (e->right == 1) ? 1 : 0;
 	if (left == 0)
 	{
-		e->res += print_char(' ', e->p - howmanytoprint(e));
+		if (e->p > e->p0)
+			e->res += print_char(' ', e->p - ((e->spec != 1) ? howmanytoprint(e) : e->p0));
 		if (e->zero)
-			e->res += print_char('0', e->p - e->arg_len);
+			e->res += print_char('0', e->p - howmanytoprint(e));
 	}
 	if (e->spec != 1)
 	{
@@ -182,6 +184,8 @@ int			howmanytoprint(t_arg *e)
 	size_read = 0;
 	i = 0;
 	j = 0;
+	if (e->p0 != 0 && e->p0 < e->arg_len)
+		e->arg_len = e->p0;
 	size_read += wlen(*e->wchar);
 	while (*(e->ret + i) && size_read <= e->arg_len)
 		{
