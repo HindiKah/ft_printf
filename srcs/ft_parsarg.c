@@ -49,8 +49,6 @@ t_arg		init_e(t_arg e)
 	e.more = 0;
 	e.res = 0;
 	e.wchar = NULL;
-	if (e.ret != NULL)
-		free(e.ret);
 	e.ret = NULL;
 	e.argend = 0;
 	return (e);

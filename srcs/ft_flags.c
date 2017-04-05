@@ -164,7 +164,7 @@ t_arg		wstr_add(t_arg e, va_list all_arg)
 		if (!n)
 			e.ret = ft_strdup("(null)");
 		else if (n)
-			e.ret = "\0";
+			e.ret = ft_strdup("\0");
 		e.spec = 1;
 	}
 	return (e);

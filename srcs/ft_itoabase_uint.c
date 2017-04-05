@@ -29,6 +29,7 @@ char		*ft_itoabase_uint(uintmax_t c, size_t base)
 {
 	int		i;
 	char	*ret;
+	char	*tmp;
 
 	if (base > 16)
 		return (NULL);
@@ -45,5 +46,8 @@ char		*ft_itoabase_uint(uintmax_t c, size_t base)
 		ret[0] = '0';
 		ret[1] = '\0';
 	}
-	return (ft_strrev(ret));
+	tmp = ret;
+	ret = ft_strrev(tmp);
+	free(tmp);
+	return (ret);
 }
