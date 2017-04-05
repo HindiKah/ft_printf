@@ -59,28 +59,14 @@ t_funf		*ft_init_funf(t_funf *my_funf)
 	return (my_funf);
 }
 
-t_arg		*ft_do_all_fun(t_funf *my_funf, t_func *my_func, va_list all_arg, t_arg *e)
-{
-	int i;
-
-	i = 0;
-	while (e[i].type != 'e')
-	{
-		ft_init_value(&e[i], all_arg, my_funf);
-		e[i].arg_len = ft_strlen(e[i].ret);
-		e[i].value = (e[i].ret[0] == '0' && e[i].type != 'p') ? 0 : 1;
-		i++;
-	}
-	return (e);
-}
-
-void		print_arg(t_arg *e, t_func *my_func)
+t_arg		print_arg(t_arg e, t_func *my_func)
 {
 	int		i;
 
 	i = 0;
-	while (!ft_strchr(my_func[i].type, e->type))
+	while (!ft_strchr(my_func[i].type, e.type))
 		i++;
-	my_func[i].f(e);
+	e = my_func[i].f(e);
+	return (e);
 }
 

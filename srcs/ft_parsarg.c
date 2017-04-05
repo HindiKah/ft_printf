@@ -13,62 +13,46 @@
 #include "../includes/ft_printf.h"
 t_arg		*parse_this_arg(t_arg *e, const char *format);
 
-t_arg		*parse_args(t_arg *e, const char *format)
+t_arg		parse_args(const char *format, t_arg e)
 {
 	int		i;
 	int		j;
-	int		i_e;
 
-	e = init_e(e, ft_countparams(format));
 	i = 0;
-	j = 0;
-	i_e = 0;
-	while (format[i])
+	j = 1;
+	e = init_e(e);
+	if (*format == '%')
 	{
-		if (format[i] == '%')
-		{
-			j = i + 1;
-			e[i_e].index = i;
-			while (format[j] && !ft_strchr(ARG, format[j]) 
-					&& ft_strchr("1234567890 hljz.#+-", format[j]))
-				j++;
-			e[i_e].type = (ft_strchr(ARG, format[j])) ? format[j] : 'e';
-			e[i_e].argend = j + 1;
-			e[i_e].index = i;
-			(e[i_e].type != 'e') ? parse_this_arg(&e[i_e], format + i + 1) : 0;
-			i = j;
-			i_e++;
-		}
-		i++;
+		while (format[j] && !ft_strchr(ARG, format[j]))
+			j++;
+		e.type = (ft_strchr(ARG, format[j])) ? format[j] : 'e';
+		e.argend = (e.type != 'e') ? j : -1;
+		(e.argend != -1) ? parse_this_arg(&e, format + i + 1) : 0;
 	}
-	e[i_e].type = 'e';
 	return (e);
 }
 
-t_arg		*init_e(t_arg *e, int n)
+t_arg		init_e(t_arg e)
 {
-	int		e_i;
-
-	e = (t_arg*)malloc(sizeof(t_arg) * (n + 1));
-	e_i = 0;
-	while (e_i <= n)
-	{
-		e[e_i].h = 0;
-		e[e_i].hh = 0;
-		e[e_i].l = 0;
-		e[e_i].ll = 0;
-		e[e_i].j = 0;
-		e[e_i].z = 0;
-		e[e_i].dot = 0;
-		e[e_i].sharp = 0;
-		e[e_i].space = 0;
-		e[e_i].zero = 0;
-		e[e_i].right = 0;
-		e[e_i].more = 0;
-		e[e_i].res = 0;
-		e[e_i++].argend = 0;
-	}
-	e[e_i].type = 'e';
+	e.h = 0;
+	e.hh = 0;
+	e.l = 0;
+	e.ll = 0;
+	e.j = 0;
+	e.z = 0;
+	e.sign = 0;
+	e.dot = 0;
+	e.sharp = 0;
+	e.space = 0;
+	e.zero = 0;
+	e.right = 0;
+	e.more = 0;
+	e.res = 0;
+	e.wchar = NULL;
+	if (e.ret != NULL)
+		free(e.ret);
+	e.ret = NULL;
+	e.argend = 0;
 	return (e);
 }
 
@@ -83,13 +67,7 @@ t_arg		*parse_this_arg(t_arg *e, const char *format)
 		return (NULL);
 	}
 	init_pflag(e, format);
-	//while (*format && ft_strchr("+0-#", *format))
-	//	format++;
-	//if (!*format)
-	//	return (NULL);
 	init_precision(e, format);
-	//while (*format && ft_strchr(" 0123456789.", *format))
-	//	format++;
 	init_flag(e, format);
 	if (ft_strchr("DUO", e->type))
 	{
@@ -98,7 +76,6 @@ t_arg		*parse_this_arg(t_arg *e, const char *format)
 	}
 	if (ft_strchr("cs", e->type) && e->l == 1)
 		e->type = e->type - 'a' + 'A';
-
 	if (ft_strchr("diuU", e->type))
 	{
 		e->base = 10;
