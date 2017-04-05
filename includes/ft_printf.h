@@ -20,6 +20,7 @@
 # define FUINTO  "Oou\0"
 # define FSTR  "s\0"
 # define FCHAR  "cC\0"
+# define FWCHAR  "C\0"
 # define FPERCENT  "%ZR\0"
 # define FPOINTER  "p\0"
 # define FCHARTAB  "S\0"

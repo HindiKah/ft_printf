@@ -36,6 +36,8 @@ t_arg		putx(t_arg e)
 	sharp = (e.sharp == 1) ? 2 : 0;
 	maj = (e.type == 'X') ? 1 : 0;
 	left = (e.right == 1) ? 1 : 0;
+	if (!e.p && e.dot && e.sharp)
+		e.p0 += 2;
 	if (left == 0)
 		e.res += print_char(' ', e.p - sharp - (e.p0 > e.arg_len ? e.p0 : e.arg_len));
 	if (sharp != 0 && e.value != 0)
@@ -145,12 +147,13 @@ t_arg		putwstr(t_arg e)
 	size_read = 0;
 	i = 0;
 	e.res = 0;
-	//e = str_precision(&e);
 	str_precision(&e);
 	left = (e.right == 1) ? 1 : 0;
+	if (e.zero && e.dot && e.p)
+		e.p0 = 0;
 	if (left == 0)
 	{
-		if (e.p > e.p0)
+		if (e.p > e.p0 && !e.zero)
 			e.res += print_char(' ', e.p - ((e.spec != 1) ? howmanytoprint(&e) : e.p0));
 		if (e.zero)
 			e.res += print_char('0', e.p - howmanytoprint(&e));
@@ -186,6 +189,11 @@ int			howmanytoprint(t_arg *e)
 	size_read = 0;
 	i = 0;
 	j = 0;
+	if (!e->p0)
+	{
+		e->arg_len = 0;
+		return (0);
+	}
 	if (e->p0 != 0 && e->p0 < e->arg_len)
 		e->arg_len = e->p0;
 	size_read += wlen(*e->wchar);

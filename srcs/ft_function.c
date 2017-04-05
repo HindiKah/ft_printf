@@ -39,23 +39,25 @@ t_func		*ft_init_func(t_func *my_func)
 
 t_funf		*ft_init_funf(t_funf *my_funf)
 {
-	my_funf = (t_funf*)malloc(sizeof(t_funf) * 7);
+	my_funf = (t_funf*)malloc(sizeof(t_funf) * 8);
 	if (!my_funf)
 		return (NULL);
 	my_funf[0].flag = FINT;
 	my_funf[0].f = &im_t;
 	my_funf[1].flag = FUINT;
 	my_funf[1].f = &uim_t;
-	my_funf[2].flag = FCHAR;
+	my_funf[2].flag = FWCHAR;
 	my_funf[2].f = &wchar_add;
-	my_funf[3].flag = FSTR;
-	my_funf[3].f = &str_add;
-	my_funf[4].flag = FPERCENT;
-	my_funf[4].f = &percent_add;
-	my_funf[5].flag = FPOINTER;
-	my_funf[5].f = &pointer_add;
-	my_funf[6].flag = FCHARTAB;
-	my_funf[6].f = &wstr_add;
+	my_funf[3].flag = FCHAR;
+	my_funf[3].f = &ch_add;
+	my_funf[4].flag = FSTR;
+	my_funf[4].f = &str_add;
+	my_funf[5].flag = FPERCENT;
+	my_funf[5].f = &percent_add;
+	my_funf[6].flag = FPOINTER;
+	my_funf[6].f = &pointer_add;
+	my_funf[7].flag = FCHARTAB;
+	my_funf[7].f = &wstr_add;
 	return (my_funf);
 }
 

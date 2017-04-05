@@ -69,7 +69,11 @@ t_arg		ch_add(t_arg e, va_list all_arg)
 	intmax_t n;
 
 	n = va_arg(all_arg, uintmax_t);
-	e.ret = add_c_c((int)n);
+	e.ret = (char*)malloc(sizeof(char) * 2);
+	if (!e.ret)
+		return (e);
+	e.ret[0] = (char)n;
+	e.ret[1] = '\0';
 	if (e.dot == 1)
 		e.p0 = 0;
 	return(e);
