@@ -48,14 +48,11 @@ int			final_print(const char *format,
 	{
 		if (format[i] == '%' && ((e = parse_args(format + i, e)).type != 'e'))
 		{
-			if (e.type != 'e')
-			{
-				e = printer(e, my_func, my_funf, all_arg);
-				ret += e.res;
-				i += e.argend;
-			}
+			e = printer(e, my_func, my_funf, all_arg);
+			ret += e.res;
+			i += e.argend;
 		}
-		else if (format[i] && e.type != 'e')
+		else if (format[i])
 			ret += (format[i] != '%') ? rprint(1, format + i, 1) : 0;
 		i++;
 	}
@@ -66,8 +63,6 @@ t_arg		printer(t_arg e, t_func *my_func, t_funf *my_funf, va_list all_arg)
 {
 	e = ft_init_value(e, all_arg, my_funf);
 	e = print_arg(e, my_func);
-	if (e.type == 'S')
-		e.wchar = NULL;
 	if (e.ret)
 		free(e.ret);
 	return (e);

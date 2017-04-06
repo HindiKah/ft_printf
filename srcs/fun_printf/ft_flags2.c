@@ -87,5 +87,6 @@ t_arg		n_doesnt_exist(t_arg e, wchar_t *n)
 		e.ret = ft_strdup("(null)");
 	else if (n)
 		e.ret = ft_strdup("\0");
+	e.type = 's';
 	return (e);
 }
