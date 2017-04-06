@@ -24,16 +24,6 @@ int			ft_printf(const char *format, ...)
 	va_start(all_arg, format);
 	my_func = ft_init_func(my_func);
 	my_funf = ft_init_funf(my_funf);
-
-
-
-
-	//	int i = 0;
-	//	while (i < 2)
-	//		print_debug(e[i++]);
-
-
-
 	ret = final_print(format, all_arg, my_func, my_funf);
 	va_end(all_arg);
 	free(my_func);
@@ -50,10 +40,8 @@ int			final_print(const char *format, va_list all_arg, t_func *my_func, t_funf *
 	ret = 0;
 	i = 0;
 	e.type = '0';
-	e.ret = NULL;
 	while (format[i])
 	{
-			//ft_putstr("AFTER FIRST\n");
 		if (format[i] == '%' && ((e = parse_args(format + i, e)).type != 'e'))
 		{
 			if (e.type != 'e')
@@ -68,7 +56,7 @@ int			final_print(const char *format, va_list all_arg, t_func *my_func, t_funf *
 			ret += e.res;
 			i += e.argend;
 		}
-		else if (format[i])
+		else if (format[i] && e.type != 'e')
 			ret += (format[i] != '%') ? rprint(1, format + i, 1) : 0;
 		i++;
 	}
