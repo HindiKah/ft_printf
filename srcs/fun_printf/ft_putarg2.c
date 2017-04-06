@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 10:04:53 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/04/06 10:30:07 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:16:18 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,11 @@ t_arg		left_0(t_arg e, int *i)
 	if (e.spec != 1)
 	{
 		size_read += wlen(*e.wchar);
-		while (*(e.ret + i[0]) && size_read <= e.arg_len)
+		while (*(e.ret + *i) && size_read <= e.arg_len)
 		{
-			rprint(1, e.ret + i[0], wlen(*e.wchar));
+			rprint(1, e.ret + *i, wlen(*e.wchar));
 			e.wchar++;
-			i[0] = size_read;
+			*i = size_read;
 			size_read += wlen(*e.wchar);
 		}
 		e.res += size_read - wlen(*e.wchar);

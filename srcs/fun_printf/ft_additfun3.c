@@ -6,11 +6,11 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 09:35:28 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/04/06 10:41:59 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:07:21 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 int			print_char(char c, int i)
 {

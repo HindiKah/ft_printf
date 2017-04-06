@@ -6,11 +6,11 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 13:51:02 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/02/02 19:40:17 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:07:27 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 size_t		ft_countparams(const char *format)
 {

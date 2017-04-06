@@ -6,11 +6,11 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 12:46:51 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/04/06 10:59:40 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:07:53 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 t_arg		ft_init_value(t_arg e, va_list all_arg, t_funf *my_funf)
 {

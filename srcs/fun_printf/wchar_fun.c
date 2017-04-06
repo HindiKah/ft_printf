@@ -6,11 +6,11 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 19:40:52 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/04/06 10:43:18 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:08:24 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 int			bit_max(int size);
 char		*wchar_to_char(wchar_t c, size_t size, char *ret);

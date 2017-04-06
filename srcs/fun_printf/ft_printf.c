@@ -6,11 +6,11 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 21:12:48 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/04/06 09:46:14 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:11:38 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 int			final_print(const char *format,
 		va_list all_arg, t_func *my_func, t_funf *my_funf);

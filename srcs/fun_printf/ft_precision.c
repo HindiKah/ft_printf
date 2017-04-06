@@ -6,11 +6,11 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 10:40:19 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/04/06 10:40:27 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:07:59 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 t_arg		*str_precision(t_arg *e)
 {

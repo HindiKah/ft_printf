@@ -6,7 +6,7 @@
 #    By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 21:57:52 by ybenoit           #+#    #+#              #
-#    Updated: 2017/04/06 11:01:03 by ybenoit          ###   ########.fr        #
+#    Updated: 2017/04/06 11:16:42 by ybenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 CC=gcc
@@ -29,6 +29,7 @@ SRC_BASE=fun_printf/ft_additfun.c\
 			fun_printf/ft_parsing.c\
 			fun_printf/ft_function.c\
 			fun_printf/ft_parsarg.c\
+			fun_printf/ft_ctransformer.c\
 			ft_atoi.c\
 			ft_bzero.c\
 			ft_char_count.c\

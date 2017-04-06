@@ -6,11 +6,11 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 18:15:03 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/02/14 21:42:40 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:07:11 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 char		*add_less(char *nb)
 {

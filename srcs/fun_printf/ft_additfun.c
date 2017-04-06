@@ -6,11 +6,11 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 19:11:28 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/04/06 09:36:54 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 11:06:51 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 char		*ft_checkmaj(char *nbr)
 {
