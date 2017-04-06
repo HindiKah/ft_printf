@@ -6,11 +6,13 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 18:24:52 by ybenoit           #+#    #+#             */
-/*   Updated: 2016/12/08 18:26:09 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 10:49:07 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void		cleaning_str(char const *s1, char const *s2);
 
 char		*ft_strjoin_free(char const *s1, char const *s2)
 {
@@ -36,9 +38,14 @@ char		*ft_strjoin_free(char const *s1, char const *s2)
 	while (s2[i])
 		ret[j++] = s2[i++];
 	ret[j] = '\0';
+	cleaning_str(s1, s2);
+	return (ret);
+}
+
+void		cleaning_str(char const *s1, char const *s2)
+{
 	if (s1)
 		free((char*)s1);
 	if (s2)
 		free((char*)s2);
-	return (ret);
 }

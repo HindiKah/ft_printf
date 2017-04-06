@@ -6,11 +6,12 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 15:00:01 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/29 15:18:23 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 10:53:11 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
 t_arg		*parse_this_arg(t_arg *e, const char *format);
 
 t_arg		parse_args(const char *format, t_arg e)
@@ -67,23 +68,7 @@ t_arg		*parse_this_arg(t_arg *e, const char *format)
 	init_pflag(e, format);
 	init_precision(e, format);
 	init_flag(e, format);
-	if (ft_strchr("DUO", e->type))
-	{
-		e->type = e->type - 'A' + 'a';
-		e->l = 1;
-	}
-	if (ft_strchr("cs", e->type) && e->l == 1)
-		e->type = e->type - 'a' + 'A';
-	if (ft_strchr("diuU", e->type))
-	{
-		e->base = 10;
-	}
-	else if (ft_strchr("pxX", e->type))
-		e->base = 16;
-	else if (ft_strchr("o", e->type))
-		e->base = 8;
-	else
-		e->base = 0;
+	treat_flag_base(e);
 	return (e);
 }
 
@@ -96,7 +81,8 @@ t_arg		*init_precision(t_arg *e, const char *format)
 	while (*format && !ft_strchr("123456789.", *format))
 		format++;
 	e->p = ft_atoi(format);
-	while (*format && *format != '.' && !ft_strchr("sSpdDioOuUxXcChljzZ%.", *format))
+	while (*format && *format != '.' &&
+			!ft_strchr("sSpdDioOuUxXcChljzZ%.", *format))
 		format++;
 	if (*format == '.')
 	{
@@ -106,7 +92,7 @@ t_arg		*init_precision(t_arg *e, const char *format)
 	e->p0 = ft_atoi(format);
 	if (e->p0 == 0 && e->p != 0 && e->zero == 1)
 		e->p0 = e->p;
-	return(e);
+	return (e);
 }
 
 t_arg		*init_flag(t_arg *e, const char *format)
@@ -129,4 +115,3 @@ t_arg		*init_flag(t_arg *e, const char *format)
 	}
 	return (e);
 }
-

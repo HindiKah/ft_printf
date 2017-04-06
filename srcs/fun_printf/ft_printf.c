@@ -6,13 +6,16 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 21:12:48 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/29 18:11:44 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 09:46:14 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int			final_print(const char *format, va_list all_arg, t_func *my_func, t_funf *my_funf);
+int			final_print(const char *format,
+		va_list all_arg, t_func *my_func, t_funf *my_funf);
+t_arg		printer(t_arg e, t_func *my_func,
+		t_funf *my_funf, va_list all_arg);
 
 int			ft_printf(const char *format, ...)
 {
@@ -31,7 +34,8 @@ int			ft_printf(const char *format, ...)
 	return (ret);
 }
 
-int			final_print(const char *format, va_list all_arg, t_func *my_func, t_funf *my_funf)
+int			final_print(const char *format,
+		va_list all_arg, t_func *my_func, t_funf *my_funf)
 {
 	int		i;
 	int		ret;
@@ -46,15 +50,10 @@ int			final_print(const char *format, va_list all_arg, t_func *my_func, t_funf *
 		{
 			if (e.type != 'e')
 			{
-				e = ft_init_value(e, all_arg, my_funf); 
-				e = print_arg(e, my_func);
-				if (e.type == 'S')
-					e.wchar = NULL;
-				if (e.ret)
-					free(e.ret);
+				e = printer(e, my_func, my_funf, all_arg);
+				ret += e.res;
+				i += e.argend;
 			}
-			ret += e.res;
-			i += e.argend;
 		}
 		else if (format[i] && e.type != 'e')
 			ret += (format[i] != '%') ? rprint(1, format + i, 1) : 0;
@@ -63,8 +62,13 @@ int			final_print(const char *format, va_list all_arg, t_func *my_func, t_funf *
 	return (ret);
 }
 
-
-void		print_debug(t_arg e)
+t_arg		printer(t_arg e, t_func *my_func, t_funf *my_funf, va_list all_arg)
 {
-	printf("\n\nT_ARG type-> %c\nl = %d\nll = %d\nh = %d\nhh = %d\nj = %d\nz = %d\np = %d && p0 = %d && dot = %d\n# = %d\n+ == %d\n- = %d\nspace = %d\nzero = %d\nargend = %d\nvalue = %d\n\tret = %s -> e.res = %d\n",  e.type, e.l, e.ll, e.h, e.hh, e.j, e.z, e.p, e.p0, e.dot,  e.sharp, e.more, e.right, e.space, e.zero, e.argend, e.value,  e.ret, e.res);
+	e = ft_init_value(e, all_arg, my_funf);
+	e = print_arg(e, my_func);
+	if (e.type == 'S')
+		e.wchar = NULL;
+	if (e.ret)
+		free(e.ret);
+	return (e);
 }

@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 19:57:34 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/01/19 21:28:22 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 10:51:18 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ char		ft_converttochar(int c)
 	else
 		return ('0' + c);
 }
+
 char		*ft_itoabase(unsigned int c, size_t base)
 {
 	int		i;
 	char	*ret;
-	
+
 	if (base > 16)
 		return (NULL);
 	i = 0;

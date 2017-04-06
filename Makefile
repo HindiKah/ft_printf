@@ -6,7 +6,7 @@
 #    By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 21:57:52 by ybenoit           #+#    #+#              #
-#    Updated: 2017/01/20 19:23:24 by ybenoit          ###   ########.fr        #
+#    Updated: 2017/04/06 11:01:03 by ybenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 CC=gcc
@@ -15,19 +15,20 @@ NAME=libftprintf.a
 INCLUDES=./includes
 
 SRC_DIR=srcs
-SRC_BASE=ft_additfun.c\
-			ft_additfun2.c\
-			ft_additfun3.c\
-			ft_precision.c\
-			ft_putarg.c\
-			wchar_fun.c\
-			ft_flags.c\
-			ft_printf.c\
-			ft_args.c\
-			ft_parsing.c\
-			ft_function.c\
-			ft_parsarg.c\
-			ft_ctransformer.c\
+SRC_BASE=fun_printf/ft_additfun.c\
+			fun_printf/ft_additfun2.c\
+			fun_printf/ft_additfun3.c\
+			fun_printf/ft_precision.c\
+			fun_printf/ft_putarg.c\
+			fun_printf/ft_putarg2.c\
+			fun_printf/wchar_fun.c\
+			fun_printf/ft_flags.c\
+			fun_printf/ft_flags2.c\
+			fun_printf/ft_printf.c\
+			fun_printf/ft_args.c\
+			fun_printf/ft_parsing.c\
+			fun_printf/ft_function.c\
+			fun_printf/ft_parsarg.c\
 			ft_atoi.c\
 			ft_bzero.c\
 			ft_char_count.c\

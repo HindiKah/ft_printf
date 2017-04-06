@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 19:40:52 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/29 17:02:33 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 10:43:18 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char		*wchar_to_char(wchar_t c, size_t size, char *ret)
 	}
 	b_max = bit_max(size);
 	b_norm = 0b111111;
-	while(i >= 0)
+	while (i >= 0)
 	{
 		if (i == 0)
 			ret[i] = (c | b_max);
@@ -54,10 +54,9 @@ char		*wchar_to_char(wchar_t c, size_t size, char *ret)
 		c = c >> 6;
 		i--;
 	}
-	ret[size] ='\0';
+	ret[size] = '\0';
 	return (ret);
 }
-
 
 int			bit_max(int size)
 {
@@ -102,21 +101,3 @@ int			bin_toadd(size_t size)
 	}
 	return (ret);
 }
-
-int			wlen(int c)
-{
-	int		size;
-
-	if (c <= 0x7F)
-		size = 1;
-	else if (c <= 0x7FF)
-		size = 2;
-	else if (c <= 0xFFFF)
-		size = 3;
-	else if (c <= 0x10FFFF)
-		size = 4;
-	else
-		size = 0;
-	return (size);
-}
-

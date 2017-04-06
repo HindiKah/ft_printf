@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 19:11:28 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/29 14:57:08 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 09:36:54 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ t_arg		*init_pflag(t_arg *e, const char *format)
 	{
 		if (ft_strchr(PREF, format[tmp]))
 		{
-			if (format[tmp] == '0' && !ft_strchr(NUM, format[tmp - 1]) && !ft_strchr("0", format[tmp + 1]) && format[tmp - 1] != '.')
+			if (format[tmp] == '0' && !ft_strchr(NUM, format[tmp - 1]) &&
+					!ft_strchr("0", format[tmp + 1]) && format[tmp - 1] != '.')
 				e->zero = 1;
 			if (format[tmp] == '#')
 				e->sharp = 1;

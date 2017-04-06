@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 11:30:20 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/29 18:03:01 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 10:39:40 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_func		*ft_init_func(t_func *my_func)
 	my_func[6].f = &putp;
 	my_func[7].type = FCHARTAB;
 	my_func[7].f = &putwstr;
-
 	return (my_func);
 }
 
@@ -71,4 +70,3 @@ t_arg		print_arg(t_arg e, t_func *my_func)
 	e = my_func[i].f(e);
 	return (e);
 }
-

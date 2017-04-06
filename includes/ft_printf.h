@@ -6,7 +6,7 @@
 /*   By: ybenoit <ybenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 20:45:12 by ybenoit           #+#    #+#             */
-/*   Updated: 2017/03/29 17:37:26 by ybenoit          ###   ########.fr       */
+/*   Updated: 2017/04/06 10:46:38 by ybenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,5 @@ t_arg			init_e(t_arg e);
 void			print_debug(t_arg e);
 t_arg			*d_precision(t_arg *e);
 int				howmanytoprint(t_arg *e);
+t_arg			*treat_flag_base(t_arg *e);
 #endif
