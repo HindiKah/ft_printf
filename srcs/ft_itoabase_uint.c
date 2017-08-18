@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t		ft_countmalloc_base_ui(uintmax_t c, size_t base)
+static size_t		ft_countmalloc_base_ui(uintmax_t c, size_t base)
 {
 	size_t	i;
 
@@ -25,7 +25,7 @@ size_t		ft_countmalloc_base_ui(uintmax_t c, size_t base)
 	return (i);
 }
 
-char		*ft_itoabase_uint(uintmax_t c, size_t base)
+char				*ft_itoabase_uint(uintmax_t c, size_t base)
 {
 	int		i;
 	char	*ret;

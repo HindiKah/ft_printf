@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t		ft_countmalloc_base(unsigned int c, size_t base)
+static size_t		ft_countmalloc_base(unsigned int c, size_t base)
 {
 	size_t	i;
 
@@ -25,7 +25,7 @@ size_t		ft_countmalloc_base(unsigned int c, size_t base)
 	return (i);
 }
 
-char		ft_converttochar(int c)
+char				ft_converttochar(int c)
 {
 	if (c > 9)
 		return ('a' + (c - 10));
@@ -33,7 +33,7 @@ char		ft_converttochar(int c)
 		return ('0' + c);
 }
 
-char		*ft_itoabase(unsigned int c, size_t base)
+char				*ft_itoabase(unsigned int c, size_t base)
 {
 	int		i;
 	char	*ret;
