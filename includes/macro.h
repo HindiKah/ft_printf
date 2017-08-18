@@ -13,6 +13,8 @@
 # define is_set(val)   (ft_strcmp(val,"NULL") != 0 ? 1 : 0)
 # define is_unset(val)   (ft_strcmp(val,"NULL") == 0 ? 1 : 0)
 # define MALLOC_ERROR exit(ft_printf("Allocation error"))
+# define ERROR_CODE 666
+# define EXIT_ERROR exit(ERROR_CODE)
 # define TRUE 1
 # define FALSE 0
 

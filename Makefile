@@ -134,8 +134,8 @@ OK=$(C_OK)OK$(C_NO)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 	@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 
 %.o: %.c $(INCLUDES)/libft.h $(INCLUDES)/ft_printf.h
